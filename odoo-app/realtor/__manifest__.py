@@ -3,14 +3,14 @@
     'name': "/mnt/extra-addons/realtor",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+    A realtor application.
+       """,
 
     'description': """
-        Long description of module's purpose
+        An application module for real estate management.
     """,
 
-    'author': "My Company",
+    'author': "Nathan Furnal",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -32,4 +32,5 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'application': True,
 }
