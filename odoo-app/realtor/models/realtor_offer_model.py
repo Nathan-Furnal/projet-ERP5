@@ -8,5 +8,6 @@ class RealtorOffer(models.Model):
     amt = fields.Integer(help="Amount offered")
 
     buyer_id = fields.Many2one('res.partner', 'offer_id')
+    apart_id = fields.Many2one('realtor.apartment', 'offer_id')
 
     _sql_constraints = [('pos_amt', 'CHECK(amt > 0)', 'The amount of the offer must be positive')]

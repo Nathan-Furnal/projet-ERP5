@@ -27,7 +27,7 @@ class RealtorApartment(models.Model):
 
     best_amt = fields.Integer(string="Amount of the best offer.")
 
-    buyer_ids = fields.Many2many('res.partner', string='Buyers')
+    offer_id = fields.One2many('realtor.offer', 'apart_id', string='Buyers')
 
     @api.constrains('best_amt')
     def check_best_amt(self):
