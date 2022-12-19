@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_/mnt/extra-addons/realtor_/mnt/extra-addons/realtor,/mnt/extra-addons/realtor./mnt/extra-addons/realtor,model_/mnt/extra-addons/realtor_/mnt/extra-addons/realtor,base.group_user,1,1,1,1
+access_realtor_app,realtor.realtor_app,realtor_apartment_model,base.group_user,1,1,1,1
+access_realtor_app,realtor.realtor_app,realtor_buyer_model,base.group_user,1,1,1,1
+access_realtor_app,realtor.realtor_app,realtor_offer_model,base.group_user,1,1,1,1
+access_realtor_app,realtor.realtor_app,realtor_seller_model,base.group_user,1,1,1,1

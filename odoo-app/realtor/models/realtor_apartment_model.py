@@ -25,9 +25,10 @@ class RealtorApartment(models.Model):
     # surface_area + terrace_area
     total_area = fields.Integer(string="Total area", compute="_compute_total_area")
 
-    best_amt = fields.Integer(string="Amount of the best offer.")
+    best_amt = fields.Integer(string="Best offer")
 
-    offer_id = fields.One2many('realtor.offer', 'apart_id', string='Buyers')
+    offer_ids = fields.One2many('realtor.offer', 'apart_id', string='Buyers')
+    seller_id = fields.Many2one('res.partner', 'appart_ids')
 
     @api.constrains('best_amt')
     def check_best_amt(self):
