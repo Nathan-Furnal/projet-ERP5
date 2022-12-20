@@ -19,7 +19,7 @@ class RealtorApartment(models.Model):
     name = fields.Char("Title", required=True)
     desc = fields.Text("Description")
 
-    img = fields.Image()
+    img = fields.Image("Apartment's picture")
 
     availability_date = fields.Date("Available from", default=lambda self: self._default_date_availability(), copy=False)
 

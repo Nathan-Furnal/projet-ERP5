@@ -16,8 +16,9 @@
                     <notebook>
                         <page string="Description">
                             <group>
-                                <group>
+                                <group>                                
                                     <field name="desc"/>                    
+                                    <field name="img"/>
                                     <field name="apartment_area"/>
                                     <field name="terrace_area"/>                            
                                     <field name="total_area"/>
