@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="realtor_apartment_view_form" model="ir.ui.view">
+        <field name="name">realtor.apartment.form</field>
+        <field name="model">realtor.apartment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="expected_price"/>
+                            <field name="best_price"/>                
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <group>
+                                <group>
+                                    <field name="desc"/>                    
+                                    <field name="apartment_area"/>
+                                    <field name="terrace_area"/>                            
+                                    <field name="total_area"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Offers">
+                            <field name="offer_ids"/>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <group>
+                                    <field name="user_id"/>
+                                    <field name="buyer_id"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="realtor_apartment_view_tree" model="ir.ui.view">
+        <field name="name">realtor.apartment.tree</field>
+        <field name="model">realtor.apartment</field>
+        <field name="arch" type="xml">
+            <tree string="Properties">
+                <field name="name"/>
+                <field name="apartment_area"/>
+                <field name="terrace_area"/>                
+                <field name="expected_price"/>    
+                <field name="availability_date" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="realtor_apartment_view_search" model="ir.ui.view">
+        <field name="name">realtor.apartment.search</field>
+        <field name="model">realtor.apartment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="expected_price"/>
+                <field name="apartment_area"/>
+                <field name="terrace_area"/>                
+            </search>
+        </field>
+    </record>
+
+    <record id="realtor_apartment_action" model="ir.actions.act_window">
+        <field name="name">Apartments</field>
+        <field name="res_model">realtor.apartment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_available': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a property advertisement
+            </p>
+            <p>
+                Create real estate properties and follow the selling process.
+            </p>
+        </field>
+    </record>
+</odoo>
