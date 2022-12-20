@@ -18,9 +18,12 @@
         <field name="name">realtor.offer.tree</field>
         <field name="model">realtor.offer</field>
         <field name="arch" type="xml">
-            <tree string="Apartment Offers">
+            <tree string="Apartment Offers" editable="bottom" decoration-success="state == 'accepted'" decoration-danger="state == 'refused'">
                 <field name="price"/>
-                <field name="partner_id"/>            
+                <field name="partner_id"/>                
+                <button name="action_accept" type="object" title="Accept" icon="fa-check" attrs="{'invisible': [('state', '!=', False)]}"/>
+                <button name="action_refuse" type="object" title="Refuse" icon="fa-times" attrs="{'invisible': [('state', '!=', False)]}"/>
+                <field name="state" invisible="1"/>
             </tree>
         </field>
     </record>

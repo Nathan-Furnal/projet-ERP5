@@ -22,6 +22,7 @@
 
     # always loaded
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/realtor_apartment_views.xml',
         'views/realtor_offer_views.xml',
