@@ -1,79 +1,79 @@
 <odoo>
-    <data noupdate="">
+  <data>
 
-        <!-- Initial partners, potential buyers -->
-        <record model="res.partner" id="realtor_partner_01">
-          <field name="name">Harry Potter</field>
-      </record>
-      <record model="res.partner" id="realtor_partner_02">
-          <field name="name">Clark Kent</field>
-      </record>
-      <record model="res.partner" id="realtor_partner_03">
-          <field name="name">Bruce Wayne</field>
-      </record>
-      <record model="res.partner" id="realtor_partner_04">
-        <field name="name">Frank Kafka</field>
-      </record>
-
-    <!-- First apartment -->
-    <record model="realtor.apartment" id="realtor_apart_01">
-      <field name="name">Beautiful Apartment</field>
-      <field name="desc">A beautiful apartment in Brussels</field>
-      <field name="img" type="base64" file="realtor/static/img/apart_img01.jpg"></field>
-      <field name="expected_price">350000</field>
-      <field name="apartment_area">100</field>
-      <field name="terrace_area">20</field>
-      <field name="state">new</field>
-      <field name="user_id" search="[('login','=','eugene.krabs@he2b.be')]"></field>
+      <!-- Initial partners, potential buyers -->
+      <record model="res.partner" id="realtor_partner_01">
+        <field name="name">Harry Potter</field>
+    </record>
+    <record model="res.partner" id="realtor_partner_02">
+        <field name="name">Clark Kent</field>
+    </record>
+    <record model="res.partner" id="realtor_partner_03">
+        <field name="name">Bruce Wayne</field>
+    </record>
+    <record model="res.partner" id="realtor_partner_04">
+      <field name="name">Frank Kafka</field>
     </record>
 
-    <!-- Second apartment -->
-    <record model="realtor.apartment" id="realtor_apart_02">
-      <field name="name">Nice Apartment</field>
-      <field name="desc">A nice apartment in the city center</field>
-      <field name="img" type="base64" file="realtor/static/img/apart_img02.jpg"></field>
-      <field name="expected_price">450000</field>
-      <field name="apartment_area">132</field>
-      <field name="terrace_area">25</field>
-      <field name="state">new</field>
-      <field name="user_id" search="[('login','=','eugene.krabs@he2b.be')]"></field>
-    </record>
+  <!-- First apartment -->
+  <record model="realtor.apartment" id="realtor_apart_01">
+    <field name="name">Beautiful Apartment</field>
+    <field name="desc">A beautiful apartment in Brussels</field>
+    <field name="img" type="base64" file="realtor/static/img/apart_img01.jpg"></field>
+    <field name="expected_price">350000</field>
+    <field name="apartment_area">100</field>
+    <field name="terrace_area">20</field>
+    <field name="state">new</field>
+    <field name="user_id" search="[('login','=','eugene.krabs@he2b.be')]"></field>
+  </record>
 
-    <!-- Third apartment -->
-    <record model="realtor.apartment" id="realtor_apart_03">
-      <field name="name">Amazing Apartment</field>
-      <field name="desc">An amazing apartment near a park</field>
-      <field name="img" type="base64" file="realtor/static/img/apart_img03.jpg"></field>
-      <field name="expected_price">325000</field>
-      <field name="apartment_area">90</field>
-      <field name="terrace_area">11</field>
-      <field name="state">new</field>
-      <field name="user_id" search="[('login','=','sandy.cheeks@he2b.be')]"></field>
-    </record>
-    
-    <!-- Fourth apartment -->
-    <record model="realtor.apartment" id="realtor_apart_04">
-      <field name="name">Rundown Apartment</field>
-      <field name="desc">A rundown apartment, looks like a shack</field>
-      <field name="img" type="base64" file="realtor/static/img/apart_img04.jpg"></field>
-      <field name="expected_price">175000</field>
-      <field name="apartment_area">30</field>
-      <field name="terrace_area">2</field>
-      <field name="state">new</field>
-      <field name="user_id" search="[('login','=','patrick.star@he2b.be')]"></field>
-    </record>  
-    
-    <!-- Fifth apartment -->
-    <record model="realtor.apartment" id="realtor_apart_05">
-      <field name="name">Okay Apartment</field>
-      <field name="desc">An okay apartment, nothing special to see here folks!</field>
-      <field name="img" type="base64" file="realtor/static/img/apart_img05.jpg"></field>
-      <field name="expected_price">250000</field>
-      <field name="apartment_area">70</field>
-      <field name="terrace_area">15</field>
-      <field name="state">new</field>
-      <field name="user_id" search="[('login','=','sheldon.plankton@he2b.be')]"></field>
-    </record>            
-    
-    </data>
+  <!-- Second apartment -->
+  <record model="realtor.apartment" id="realtor_apart_02">
+    <field name="name">Nice Apartment</field>
+    <field name="desc">A nice apartment in the city center</field>
+    <field name="img" type="base64" file="realtor/static/img/apart_img02.jpg"></field>
+    <field name="expected_price">450000</field>
+    <field name="apartment_area">132</field>
+    <field name="terrace_area">25</field>
+    <field name="state">new</field>
+    <field name="user_id" search="[('login','=','eugene.krabs@he2b.be')]"></field>
+  </record>
+
+  <!-- Third apartment -->
+  <record model="realtor.apartment" id="realtor_apart_03">
+    <field name="name">Amazing Apartment</field>
+    <field name="desc">An amazing apartment near a park</field>
+    <field name="img" type="base64" file="realtor/static/img/apart_img03.jpg"></field>
+    <field name="expected_price">325000</field>
+    <field name="apartment_area">90</field>
+    <field name="terrace_area">11</field>
+    <field name="state">new</field>
+    <field name="user_id" search="[('login','=','sandy.cheeks@he2b.be')]"></field>
+  </record>
+  
+  <!-- Fourth apartment -->
+  <record model="realtor.apartment" id="realtor_apart_04">
+    <field name="name">Rundown Apartment</field>
+    <field name="desc">A rundown apartment, looks like a shack</field>
+    <field name="img" type="base64" file="realtor/static/img/apart_img04.jpg"></field>
+    <field name="expected_price">175000</field>
+    <field name="apartment_area">30</field>
+    <field name="terrace_area">2</field>
+    <field name="state">new</field>
+    <field name="user_id" search="[('login','=','patrick.star@he2b.be')]"></field>
+  </record>  
+  
+  <!-- Fifth apartment -->
+  <record model="realtor.apartment" id="realtor_apart_05">
+    <field name="name">Okay Apartment</field>
+    <field name="desc">An okay apartment, nothing special to see here folks!</field>
+    <field name="img" type="base64" file="realtor/static/img/apart_img05.jpg"></field>
+    <field name="expected_price">250000</field>
+    <field name="apartment_area">70</field>
+    <field name="terrace_area">15</field>
+    <field name="state">new</field>
+    <field name="user_id" search="[('login','=','sheldon.plankton@he2b.be')]"></field>
+  </record>            
+  
+  </data>
 </odoo>
