@@ -15,7 +15,7 @@
 	    <field name="password">esi</field>    
 	    <field name="login">immoblier.esi@he2b.be</field>   
 	    <field name="employee">False</field>  
-	    <field name="groups_id" eval="[(7,0, [ref('base.group_user'),ref('realtor.realtor_providers')])]"/>
+	    <field name="groups_id" eval="[(6,0, [ref('base.group_user'),ref('realtor.realtor_providers')])]"/>
 	</record>
 
 	<record id="realtor_manager" model="res.users">
