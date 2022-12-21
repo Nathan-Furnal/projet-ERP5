@@ -5,6 +5,19 @@
 	    <field name="name">Cartoon chars</field>
 	</record>
 
+	<record id="realtor_providers" model="res.groups">
+	    <field name="name">Realtor Providers</field>
+	</record>	
+
+	<record id="realtor_prod_provider" model="res.users">
+	    <field name="name">Immobilier ESI</field>
+	    <field name="email">immobilier.esi@he2b.be</field>
+	    <field name="password">esi</field>    
+	    <field name="login">immoblier.esi@he2b.be</field>   
+	    <field name="employee">False</field>  
+	    <field name="groups_id" eval="[(7,0, [ref('base.group_user'),ref('realtor.realtor_providers')])]"/>
+	</record>
+
 	<record id="realtor_manager" model="res.users">
 	    <field name="name">Eugene Krabs</field>
 	    <field name="email">eugene.krabs@he2b.be</field>

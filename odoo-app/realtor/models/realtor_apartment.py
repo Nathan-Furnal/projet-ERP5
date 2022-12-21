@@ -52,6 +52,7 @@ class RealtorApartment(models.Model):
     user_id = fields.Many2one("res.users", string="Salesman", default=lambda self: self.env.user)
     buyer_id = fields.Many2one("res.partner", string="Buyer", readonly=True, copy=False)
     offer_ids = fields.One2many("realtor.offer", "property_id", string="Offers")
+    # product_id = fields.Many2one("product.template", "property_id", string="Product")
 
     @api.depends('apartment_area', 'terrace_area')
     def _compute_total_area(self):

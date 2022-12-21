@@ -1,7 +1,6 @@
 from odoo import models, fields
 
 class RealtorProduct(models.Model):
-    pass
-    # _inherit = 'product.template'
+    _inherit = 'product.template'
 
-    # TODO: add apart id
+    # apart_ids = fields.One2many("realtor.apartment", 'product_id', string="Properties")
