@@ -97,4 +97,15 @@
             </p>
         </field>
     </record>
+
+    <record id="realtor_inherit_product_template" model="ir.ui.view">
+        <field name="name">Apartment Product</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"></field>
+        <field name="arch" type="xml">
+            <field name="product_variant_id" position="after"><!-- name is mandatory -->
+                <field name="apart_id">Apartment</field>
+            </field>
+        </field>
+    </record>
 </odoo>
