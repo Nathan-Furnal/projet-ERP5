@@ -15,13 +15,59 @@
             <field name="apart_id" ref="realtor_apart_01"></field>
             <field name="type">product</field>
         </record>
+
+        <record id="realtor_template_2" model="product.template">
+            <field name="name">ApartLot2</field>
+            <field name="apart_id" ref="realtor_apart_02"></field>
+            <field name="type">product</field>
+        </record>
+        <record id="realtor_template_3" model="product.template">
+            <field name="name">ApartLot3</field>
+            <field name="apart_id" ref="realtor_apart_03"></field>
+            <field name="type">product</field>
+        </record>
+        <record id="realtor_template_4" model="product.template">
+            <field name="name">ApartLot4</field>
+            <field name="apart_id" ref="realtor_apart_04"></field>
+            <field name="type">product</field>
+        </record>
+        <record id="realtor_template_5" model="product.template">
+            <field name="name">ApartLot5</field>
+            <field name="apart_id" ref="realtor_apart_05"></field>
+            <field name="type">product</field>
+        </record>
         <!-- Add apart in inventory -->
         <record id="stock_inventory_apart1" model="stock.inventory.line">
             <field name="product_id" ref="realtor_template_1"/>
             <field name="inventory_id" ref="stock_inventory_0"/>
-            <field name="product_qty">5.0</field>
+            <field name="product_qty">7.0</field>
             <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
         </record>
+        <record id="stock_inventory_apart2" model="stock.inventory.line">
+            <field name="product_id" ref="realtor_template_2"/>
+            <field name="inventory_id" ref="stock_inventory_0"/>
+            <field name="product_qty">8.0</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="stock_inventory_apart3" model="stock.inventory.line">
+            <field name="product_id" ref="realtor_template_3"/>
+            <field name="inventory_id" ref="stock_inventory_0"/>
+            <field name="product_qty">11.0</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="stock_inventory_apart4" model="stock.inventory.line">
+            <field name="product_id" ref="realtor_template_4"/>
+            <field name="inventory_id" ref="stock_inventory_0"/>
+            <field name="product_qty">10.0</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="stock_inventory_apart5" model="stock.inventory.line">
+            <field name="product_id" ref="realtor_template_5"/>
+            <field name="inventory_id" ref="stock_inventory_0"/>
+            <field name="product_qty">3.0</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>        
+
 
         <function model="stock.inventory" name="_action_start">
             <function eval="[[('state','=','draft'),('id', '=', ref('stock_inventory_0'))]]" model="stock.inventory" name="search"/>
