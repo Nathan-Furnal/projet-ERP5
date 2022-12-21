@@ -46,6 +46,19 @@ class OdooParser:
             {'raise_exception': False},
         ):
             print("You have read rights on Realtor Apartments!\n")
+            print("The existing apartments are:\n")
+            out = self.models.execute_kw(
+                self.db,
+                self.uid,
+                self.password,
+                'realtor.apartment',
+                'search_read',
+                [],
+                {'fields': ['name']},
+            )
+            for apart in out:
+                print(f'-> {apart["name"]}')
+            print('\n')
 
     def _access_data(self, name):
         out = self.models.execute_kw(
@@ -67,12 +80,21 @@ class OdooParser:
                 ]
             },
         )
+        qt = self.models.execute_kw(
+            self.db,
+            self.uid,
+            self.password,
+            'product.product',
+            'search_read',
+            [], {'fields': ['apart_id', 'qty_available']})
         if out:
             print("----------------------------------------")
             for apart in out:
+                el = list(filter(lambda x: x['apart_id'][0] == apart['id'], qt))
                 for k, v in apart.items():
                     print(f"{k:20} ==> {v}")
-                print("----------------------------------------")                    
+                print(f"quantity{'':12} ==> {el[0]['qty_available']}")                    
+                print("----------------------------------------")
             print('\n')
         else:
             print("No such apartment under that name!\n")
