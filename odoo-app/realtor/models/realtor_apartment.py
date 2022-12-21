@@ -33,7 +33,7 @@ class RealtorApartment(models.Model):
 
     total_area = fields.Integer("Total area", compute='_compute_total_area')
 
-        # Special
+    # Special   
     state = fields.Selection(
         selection=[
             ("new", "New"),
