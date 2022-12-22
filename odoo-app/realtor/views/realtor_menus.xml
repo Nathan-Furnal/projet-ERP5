@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem id="realtor_menu_root" name="Realtor">
+        <menuitem id="realtor_advertisement_menu" name="Realtor items" sequence="5">
+            <menuitem id="realtor_apartment_menu_action" action="realtor_apartment_action" sequence="5"/>
+        </menuitem>
+    </menuitem>
+</odoo>

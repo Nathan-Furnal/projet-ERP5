@@ -1,0 +1,18 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<div class="container m-5">
+    <h3>Here are the apartments on sale ↓</h3>
+{% if messages %}
+<ul class="messages mt-5">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }} d-inline-block"{% endif %}>
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <span class="alert alert-danger">{{ message }}</span>
+    {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+</div>
+{% endblock %}
