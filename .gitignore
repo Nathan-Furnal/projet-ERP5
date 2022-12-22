@@ -1,6 +1,15 @@
-# No archive dir
+# No env
 
-*-archive
 .env
+.venv
+
+# No mypy
+.mypy_cache/
+
+# Django #
+*.log
+*.pot
+*.pyc
 __pycache__
-*.sqlite*
+db.sqlite3
+media
