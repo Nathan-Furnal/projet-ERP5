@@ -1,0 +1,22 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-offer-modal">
+    Make an offer
+</button>
+<div class="modal fade" id="add-offer-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">New offer</h4>
+                <button type="button" class="close" data-bs-dismiss="modal"><i class="fa fa-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

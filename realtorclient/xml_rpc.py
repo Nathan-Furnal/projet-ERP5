@@ -23,6 +23,7 @@ def get_apartments(uid, password, table='realtor.apartment', mode='search_read')
             'terrace_area',
             'total_area',
             'user_id',
+            'best_price',
         ]})
     products = MODELS.execute_kw(
         DB, uid, password, 'product.product', mode, [],

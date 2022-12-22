@@ -1,6 +1,8 @@
 {% extends "_base.html" %}
-{% block content %}
 
+{% block title %} Realtor Apartments {% endblock %}
+
+{% block content %}
 <div class="container m-5">
     <h3>Here are the apartments on sale ↓</h3>
     {% if messages %}
@@ -22,19 +24,58 @@
             <div class="card-header text-bg-dark">
                 {{ apart.name }}
             </div>
-            <img src= "data:image/jpeg;base64,{{ apart.img }}" class="card-img-top" height="200">
+            <img src="data:image/jpeg;base64,{{ apart.img }}" class="card-img-top" height="200">
             <div class="card-body">
                 <table>
                     <tbody>
-                    <tr><td>Availability</td> <td class="px-2"> ⇒ </td> <td>{{ apart.availability_date }}</td> </tr>
-                    <tr><td>Price</td> <td class="px-2"> ⇒ </td> <td>{{ apart.expected_price }}</td> </tr>
-                    <tr><td>Apartment area</td> <td class="px-2"> ⇒ </td> <td>{{ apart.apartment_area }}</td> </tr>
-                    <tr><td>Terrace area</td> <td class="px-2"> ⇒ </td> <td>{{ apart.terrace_area }}</td> </tr>
-                    <tr><td>Total area</td> <td class="px-2"> ⇒ </td> <td>{{ apart.total_area }}</td> </tr>
-                    <tr><td>Quantity</td> <td class="px-2"> ⇒ </td> <td>{{ apart.quantity }}</td> </tr>
-                    <tr><td>Seller</td> <td class="px-2"> ⇒ </td> <td>{{ apart.user_id }}</td> </tr>
+                    <tr>
+                        <td>Availability</td>
+                        <td class="px-2"> ⇒</td>
+                        <td>{{ apart.availability_date }}</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td class="px-2"> ⇒</td>
+                        <td>{{ apart.expected_price }}</td>
+                    </tr>
+                    <tr>
+                        <td>Apartment area</td>
+                        <td class="px-2"> ⇒</td>
+                        <td>{{ apart.apartment_area }}</td>
+                    </tr>
+                    <tr>
+                        <td>Terrace area</td>
+                        <td class="px-2"> ⇒</td>
+                        <td>{{ apart.terrace_area }}</td>
+                    </tr>
+                    <tr>
+                        <td>Total area</td>
+                        <td class="px-2"> ⇒</td>
+                        <td>{{ apart.total_area }}</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity</td>
+                        <td class="px-2"> ⇒</td>
+                        <td>{{ apart.quantity }}</td>
+                    </tr>
+                    <tr>
+                        <td>Best offer</td>
+                        <td class="px-2"> ⇒</td>
+                        <td>{{ apart.best_price }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">--------------</td>
+                    </tr>
+                    <tr>
+                        <td>Seller</td>
+                        <td class="px-2"> ⇒</td>
+                        <td>{{ apart.user_id }}</td>
+                    </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="card-footer">
+                {% include "odoo_realtor/_add_offer_modal.html" %}
             </div>
         </div>
         {% endfor %}
