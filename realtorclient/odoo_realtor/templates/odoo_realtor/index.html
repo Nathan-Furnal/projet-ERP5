@@ -59,22 +59,23 @@
                         <td>{{ apart.quantity }}</td>
                     </tr>
                     <tr>
+                        <td colspan="3">💸</td>
+                    </tr>
+                    <tr>
                         <td>Best offer</td>
                         <td class="px-2"> ⇒</td>
                         <td>{{ apart.best_price }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3">--------------</td>
-                    </tr>
-                    <tr>
-                        <td>Seller</td>
+                        <td>Made by</td>
                         <td class="px-2"> ⇒</td>
-                        <td>{{ apart.user_id }}</td>
+                        <td>{{ apart.partner_id }}</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer">
+            <div class="d-flex">
+                <!--     include is context aware! I can access apart.id inside    -->
                 {% include "odoo_realtor/_add_offer_modal.html" %}
             </div>
         </div>

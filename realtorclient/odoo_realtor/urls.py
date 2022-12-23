@@ -6,5 +6,6 @@ from .views import ApartView
 app_name = 'odoo_realtor'
 
 urlpatterns = [
-    path('', ApartView.index, name="index")
+    path('', ApartView.index, name="index"),
+    path('create_offer', ApartView.create_offer, name="create_offer")
 ]
