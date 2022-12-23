@@ -5,7 +5,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.conf import settings
 from .forms import OfferForm
-from django.urls import reverse
 import xml_rpc
 
 
@@ -13,6 +12,7 @@ class ApartView:
     uid = False
     context = {}
     password = ''
+
     @staticmethod
     def index(request):
         try:
