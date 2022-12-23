@@ -57,6 +57,14 @@ aux appartements. Enfin, les produits de l'inventaire font appel au *template* p
 Django et un *framework* web écrit en Python, on l'utilise pour afficher les infomrations de l'application et interagir avec Odoo via XML-RPC. Ceci nécessite d'avoir un serveur Odoo disponible
 pour pouvoir récupérer les données de la DB.
 
+## Mise en place
+
+Pour installer l'environnement virtuel, il est nécessaire d'utiliser `poetry` ou
+un outil compatible avec le fichier `pyproject.toml`. Celui-ci défini les
+dépendances nécessaires au projet. On peut simplement installer le projet avec
+`poetry install` ou bien `pip install .` dans le répertoire
+`realtorclient`. Ensuite, il faut activer l'environnement virtuel.
+
 ## Modèles
 
 Comme les modèles sont déjà créés du côté d'Odoo, il y a peu ou pas de modèles nécessaires.
