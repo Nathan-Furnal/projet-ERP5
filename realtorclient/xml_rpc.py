@@ -33,7 +33,6 @@ def get_apartments(uid, password):
     offers = sorted(offers, key=lambda x: x['property_id'][0])   # property_id is a list like [1, 'Apartment']
     # Since the offers are sorted, group by property id and get the first element (the greatest) of each group
     offers = [next(g) for _, g in itertools.groupby(offers, lambda x: x['property_id'][0])]
-    print(offers)
     for apart, prod, offer in zip(apartments, products, offers):
         apart['quantity'] = prod['qty_available']
         apart['user_id'] = apart['user_id'][1]  # Keep the seller's name but not the ID, format is [1, "name"] otherwise
