@@ -103,68 +103,48 @@
 <h2>Table des matières</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-org2bfa2f4">1. Présentation</a>
+<li><a href="#/slide-org6478469">1. Présentation</a>
 <ul>
-<li><a href="#/slide-org43ec442">1.1. Présentation du projet</a>
-<ul>
-<li><a href="#/slide-org1daee9c">1.1.1. Odoo</a></li>
-<li><a href="#/slide-orga81e9b7">1.1.2. Django</a></li>
+<li><a href="#/slide-orgf3a7978">1.1. Présentation du projet</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#/slide-org6c75f30">2. Architecture du projet</a>
+<li><a href="#/slide-org6bac561">2. Architecture du projet</a>
 <ul>
-<li><a href="#/slide-orgeb765d8">2.1. Odoo</a>
+<li><a href="#/slide-orgc7879e3">2.1. Odoo</a></li>
+<li><a href="#/slide-orge41e410">2.2. Django</a></li>
+</ul>
+</li>
+<li><a href="#/slide-org0116daa">3. Connexion au service web</a>
 <ul>
-<li><a href="#/slide-orgac15d95">2.1.1. <i>Business Object</i> Appartement</a></li>
-<li><a href="#/slide-org77dcbe9">2.1.2. <i>Business Object</i> Offre</a></li>
-<li><a href="#/slide-orgea0a8bf">2.1.3. <i>Business Object</i> Produit</a></li>
-<li><a href="#/slide-org91aa632">2.1.4. <i>Business Object</i> Utilisateur</a></li>
-<li><a href="#/slide-org50417c6">2.1.5. Vues Odoo</a></li>
-<li><a href="#/slide-orgf52c08e">2.1.6. Données fictives utilisateur</a></li>
-<li><a href="#/slide-org5aa98d9">2.1.7. Données fictives de stocks</a></li>
+<li><a href="#/slide-orge4519d4">3.1. Connexion via XML-RPC</a></li>
 </ul>
 </li>
-<li><a href="#/slide-org33eedc6">2.2. Django</a>
+<li><a href="#/slide-orgde46229">4. Conclusion</a>
 <ul>
-<li><a href="#/slide-orgc4c02b1">2.2.1. Application de connexion - Modèle</a></li>
-<li><a href="#/slide-org72b7728">2.2.2. Application de connexion - Vue</a></li>
-<li><a href="#/slide-org961c713">2.2.3. Application d'achat d'appartement</a></li>
+<li><a href="#/slide-org1cb5060">4.1. Odoo</a></li>
+<li><a href="#/slide-org7f479ae">4.2. Django</a></li>
+<li><a href="#/slide-org871e78f">4.3. Améliorations possibles</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#/slide-orgf0fd0ea">3. Connexion au service web</a>
-<ul>
-<li><a href="#/slide-orgaa0e1fa">3.1. Connexion via XML-RPC</a>
-<ul>
-<li><a href="#/slide-org01f467d">3.1.1. Stratégie</a></li>
-<li><a href="#/slide-org6e7f16d">3.1.2. Code</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#/slide-org2f37026">4. Conclusion</a></li>
-<li><a href="#/slide-org75d8eb0">5. Questions ?</a></li>
+<li><a href="#/slide-org9d17537">5. Questions ?</a></li>
 </ul>
 </div>
 </div>
 </section>
 
 <section>
-<section id="slide-org2bfa2f4">
-<h2 id="org2bfa2f4"><span class="section-number-2">1.</span> Présentation</h2>
+<section id="slide-org6478469">
+<h2 id="org6478469"><span class="section-number-2">1.</span> Présentation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 </section>
-<section id="slide-org43ec442">
-<h3 id="org43ec442"><span class="section-number-3">1.1.</span> Présentation du projet</h3>
+<section id="slide-orgf3a7978">
+<h3 id="orgf3a7978"><span class="section-number-3">1.1.</span> Présentation du projet</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
 </section>
-<section id="slide-org1daee9c">
-<h4 id="org1daee9c"><span class="section-number-4">1.1.1.</span> Odoo</h4>
+<section id="slide-orgeb8a4d0">
+<h4 id="orgeb8a4d0"><span class="section-number-4">1.1.1.</span> Odoo</h4>
 <p>
 La partie Odoo est sous <code>odoo-app</code>.
 </p>
@@ -178,8 +158,8 @@ La partie Odoo est sous <code>odoo-app</code>.
 </ul>
 
 </section>
-<section id="slide-orga81e9b7">
-<h4 id="orga81e9b7"><span class="section-number-4">1.1.2.</span> Django</h4>
+<section id="slide-org15251e8">
+<h4 id="org15251e8"><span class="section-number-4">1.1.2.</span> Django</h4>
 <ul>
 <li>La partie Django est sous <code>realtorclient</code>
 <ul>
@@ -194,18 +174,18 @@ La partie Odoo est sous <code>odoo-app</code>.
 </section>
 </section>
 <section>
-<section id="slide-org6c75f30">
-<h2 id="org6c75f30"><span class="section-number-2">2.</span> Architecture du projet</h2>
+<section id="slide-org6bac561">
+<h2 id="org6bac561"><span class="section-number-2">2.</span> Architecture du projet</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 </section>
-<section id="slide-orgeb765d8">
-<h3 id="orgeb765d8"><span class="section-number-3">2.1.</span> Odoo</h3>
+<section id="slide-orgc7879e3">
+<h3 id="orgc7879e3"><span class="section-number-3">2.1.</span> Odoo</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
 </section>
-<section id="slide-orgac15d95">
-<h4 id="orgac15d95"><span class="section-number-4">2.1.1.</span> <i>Business Object</i> Appartement</h4>
+<section id="slide-org98ed72f">
+<h4 id="org98ed72f"><span class="section-number-4">2.1.1.</span> <i>Business Object</i> Appartement</h4>
 <p>
 Appartement mis en vente sur la plate-forme.
 </p>
@@ -325,8 +305,8 @@ Appartement mis en vente sur la plate-forme.
 </code></pre>
 </div>
 </section>
-<section id="slide-org77dcbe9">
-<h4 id="org77dcbe9"><span class="section-number-4">2.1.2.</span> <i>Business Object</i> Offre</h4>
+<section id="slide-orgb979983">
+<h4 id="orgb979983"><span class="section-number-4">2.1.2.</span> <i>Business Object</i> Offre</h4>
 <p>
 Objet de gestion des offres sur la plate-forme.
 </p>
@@ -410,8 +390,8 @@ Objet de gestion des offres sur la plate-forme.
 </code></pre>
 </div>
 </section>
-<section id="slide-orgea0a8bf">
-<h4 id="orgea0a8bf"><span class="section-number-4">2.1.3.</span> <i>Business Object</i> Produit</h4>
+<section id="slide-org66bb686">
+<h4 id="org66bb686"><span class="section-number-4">2.1.3.</span> <i>Business Object</i> Produit</h4>
 <p>
 Objet de liaison entre l'appartement et le système de stocks d'Odoo.
 </p>
@@ -433,8 +413,8 @@ Objet de liaison entre l'appartement et le système de stocks d'Odoo.
 </code></pre>
 </div>
 </section>
-<section id="slide-org91aa632">
-<h4 id="org91aa632"><span class="section-number-4">2.1.4.</span> <i>Business Object</i> Utilisateur</h4>
+<section id="slide-orgcab59e4">
+<h4 id="orgcab59e4"><span class="section-number-4">2.1.4.</span> <i>Business Object</i> Utilisateur</h4>
 <p>
 Extension de la classe utilisateur pour tenir compte des appartements liés à un utilisateur.
 </p>
@@ -458,8 +438,8 @@ Extension de la classe utilisateur pour tenir compte des appartements liés à u
 </code></pre>
 </div>
 </section>
-<section id="slide-org50417c6">
-<h4 id="org50417c6"><span class="section-number-4">2.1.5.</span> Vues Odoo</h4>
+<section id="slide-orgd7843e8">
+<h4 id="orgd7843e8"><span class="section-number-4">2.1.5.</span> Vues Odoo</h4>
 <p>
 Les vues sont générées via du XML, on peut créer des sous-pages et des actions qui appelleront les
 méthodes du modèle quand on remplit les champs nécessaires.
@@ -580,8 +560,8 @@ méthodes du modèle quand on remplit les champs nécessaires.
 </code></pre>
 </div>
 </section>
-<section id="slide-orgf52c08e">
-<h4 id="orgf52c08e"><span class="section-number-4">2.1.6.</span> Données fictives utilisateur</h4>
+<section id="slide-orgd5fd69c">
+<h4 id="orgd5fd69c"><span class="section-number-4">2.1.6.</span> Données fictives utilisateur</h4>
 <p>
 Les données sont elles aussi générées par le XML via les fichiers de démonstration, on peut créer
 des nouveaux utilisateurs, des appartements, des lignes de stocks, etc.
@@ -670,8 +650,8 @@ des nouveaux utilisateurs, des appartements, des lignes de stocks, etc.
 </code></pre>
 </div>
 </section>
-<section id="slide-org5aa98d9">
-<h4 id="org5aa98d9"><span class="section-number-4">2.1.7.</span> Données fictives de stocks</h4>
+<section id="slide-org9616532">
+<h4 id="org9616532"><span class="section-number-4">2.1.7.</span> Données fictives de stocks</h4>
 <div class="org-src-container">
 
 <pre  class="src src-xml"   ><code trim><span style="color: #595959;">&lt;?</span><span style="color: #531ab6; font-weight: bold;">xml</span> <span style="color: #595959; font-style: italic;">version="1.0" encoding="utf-8"</span><span style="color: #595959;">?&gt;</span>
@@ -757,13 +737,13 @@ des nouveaux utilisateurs, des appartements, des lignes de stocks, etc.
 </code></pre>
 </div>
 </section>
-<section id="slide-org33eedc6">
-<h3 id="org33eedc6"><span class="section-number-3">2.2.</span> Django</h3>
+<section id="slide-orge41e410">
+<h3 id="orge41e410"><span class="section-number-3">2.2.</span> Django</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
 </section>
-<section id="slide-orgc4c02b1">
-<h4 id="orgc4c02b1"><span class="section-number-4">2.2.1.</span> Application de connexion - Modèle</h4>
+<section id="slide-org7c0d6d0">
+<h4 id="org7c0d6d0"><span class="section-number-4">2.2.1.</span> Application de connexion - Modèle</h4>
 <p>
 Il y a peu à dire sur ce modèle, on crée un objet utilisateur simple et un formulaire pour le
 compléter.
@@ -800,8 +780,8 @@ et
 </code></pre>
 </div>
 </section>
-<section id="slide-org72b7728">
-<h4 id="org72b7728"><span class="section-number-4">2.2.2.</span> Application de connexion - Vue</h4>
+<section id="slide-org117033d">
+<h4 id="org117033d"><span class="section-number-4">2.2.2.</span> Application de connexion - Vue</h4>
 <p>
 La vue capture le niveau d'erreur lors de la tentative de connexion au service web. Elle va aussi
 permettre l'enregistrement de l'utilisateur et du mot de passe dans un fichier d'environnement.
@@ -875,8 +855,8 @@ permettre l'enregistrement de l'utilisateur et du mot de passe dans un fichier d
 </code></pre>
 </div>
 </section>
-<section id="slide-org961c713">
-<h4 id="org961c713"><span class="section-number-4">2.2.3.</span> Application d'achat d'appartement</h4>
+<section id="slide-org010e49c">
+<h4 id="org010e49c"><span class="section-number-4">2.2.3.</span> Application d'achat d'appartement</h4>
 <p>
 La logique business est concentrée dans l'application de connexion au service XML-RPC, je me
 contente de récupérer les données et les afficher ainsi que gérer les demandes d'achat.
@@ -939,31 +919,107 @@ contente de récupérer les données et les afficher ainsi que gérer les demand
 </section>
 </section>
 <section>
-<section id="slide-orgf0fd0ea">
-<h2 id="orgf0fd0ea"><span class="section-number-2">3.</span> Connexion au service web</h2>
+<section id="slide-org0116daa">
+<h2 id="org0116daa"><span class="section-number-2">3.</span> Connexion au service web</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 </section>
-<section id="slide-orgaa0e1fa">
-<h3 id="orgaa0e1fa"><span class="section-number-3">3.1.</span> Connexion via XML-RPC</h3>
+<section id="slide-orge4519d4">
+<h3 id="orge4519d4"><span class="section-number-3">3.1.</span> Connexion via XML-RPC</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
 </section>
-<section id="slide-org01f467d">
-<h4 id="org01f467d"><span class="section-number-4">3.1.1.</span> Stratégie</h4>
+<section id="slide-orgda28065">
+<h4 id="orgda28065"><span class="section-number-4">3.1.1.</span> Fonctionnement</h4>
+<ul>
+<li>Nécessite que le <i>container</i> Odoo soit lancé et expose son port.</li>
+<li>Nécessite de passer l'utilisateur et son mot de passe en paramètres.</li>
+<li>Sépare chaque opération CRUD en une fonction.</li>
+<li>Accède et trie correctement les données pour minimiser le travail d'affichage.</li>
+
+</ul>
 </section>
-<section id="slide-org6e7f16d">
-<h4 id="org6e7f16d"><span class="section-number-4">3.1.2.</span> Code</h4>
+<section id="slide-org4ec1018">
+<h4 id="org4ec1018"><span class="section-number-4">3.1.2.</span> Code</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">import</span> xmlrpc.client
+<span style="color: #531ab6; font-weight: bold;">import</span> itertools
+
+<span style="color: #005e8b; font-weight: bold;">PORT</span> <span style="font-weight: bold;">=</span> <span style="color: #0000b0;">8069</span>
+<span style="color: #005e8b; font-weight: bold;">URL</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">f"http://localhost:</span><span style="color: #00663f; font-weight: bold;">{</span><span style="color: #0000b0; background-color: #ffffff; font-weight: bold;">PORT</span><span style="color: #00663f; font-weight: bold;">}</span><span style="color: #354fcf;">"</span>
+<span style="color: #005e8b; font-weight: bold;">DB</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">"dev01"</span>
+<span style="color: #005e8b; font-weight: bold;">COMMON</span> <span style="font-weight: bold;">=</span> xmlrpc.client.<span style="color: #005f5f; font-weight: bold;">ServerProxy</span><span style="color: #000000;">(</span><span style="color: #354fcf;">f'</span><span style="color: #00663f; font-weight: bold;">{</span><span style="color: #0000b0; background-color: #ffffff; font-weight: bold;">URL</span><span style="color: #00663f; font-weight: bold;">}</span><span style="color: #354fcf;">/xmlrpc/2/common'</span><span style="color: #000000;">)</span>
+<span style="color: #005e8b; font-weight: bold;">MODELS</span> <span style="font-weight: bold;">=</span> xmlrpc.client.<span style="color: #005f5f; font-weight: bold;">ServerProxy</span><span style="color: #000000;">(</span><span style="color: #354fcf;">f'</span><span style="color: #00663f; font-weight: bold;">{</span><span style="color: #0000b0; background-color: #ffffff; font-weight: bold;">URL</span><span style="color: #00663f; font-weight: bold;">}</span><span style="color: #354fcf;">/xmlrpc/2/object'</span><span style="color: #000000;">)</span>
+
+<span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">connect</span><span style="color: #000000;">(</span><span style="color: #005e8b;">login</span>, <span style="color: #005e8b;">password</span><span style="color: #000000;">)</span>:
+    <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #0000b0; font-weight: bold;">COMMON</span>.authenticate<span style="color: #000000;">(</span><span style="color: #0000b0; font-weight: bold;">DB</span>, login, password, <span style="color: #dd22dd;">{}</span><span style="color: #000000;">)</span>
+
+<span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">db_interact</span><span style="color: #000000;">(</span><span style="color: #005e8b;">uid</span>, <span style="color: #005e8b;">password</span>, <span style="color: #005e8b;">table</span>, <span style="color: #005e8b;">mode</span>, <span style="color: #005e8b;">fields</span><span style="font-weight: bold;">=</span><span style="color: #0000b0;">None</span><span style="color: #000000;">)</span>:
+    <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #0000b0; font-weight: bold;">MODELS</span>.execute_kw<span style="color: #000000;">(</span>
+        <span style="color: #0000b0; font-weight: bold;">DB</span>, uid, password, table, mode, <span style="color: #dd22dd;">[]</span>,
+        <span style="color: #dd22dd;">{</span><span style="color: #354fcf;">'fields'</span>: fields<span style="color: #dd22dd;">}</span><span style="color: #000000;">)</span>
+
+<span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">get_apartments</span><span style="color: #000000;">(</span><span style="color: #005e8b;">uid</span>, <span style="color: #005e8b;">password</span><span style="color: #000000;">)</span>:
+    <span style="color: #005e8b;">products</span> <span style="font-weight: bold;">=</span> <span style="color: #721045;">db_interact</span><span style="color: #000000;">(</span>uid, password, <span style="color: #354fcf;">'product.product'</span>, <span style="color: #354fcf;">'search_read'</span>, <span style="color: #dd22dd;">[</span><span style="color: #354fcf;">'apart_id'</span>, <span style="color: #354fcf;">'qty_available'</span><span style="color: #dd22dd;">]</span><span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">apartments</span> <span style="font-weight: bold;">=</span> <span style="color: #721045;">db_interact</span><span style="color: #000000;">(</span>uid, password, <span style="color: #354fcf;">'realtor.apartment'</span>, <span style="color: #354fcf;">'search_read'</span>,
+                             <span style="color: #dd22dd;">[</span><span style="color: #354fcf;">'name'</span>, <span style="color: #354fcf;">'img'</span>, <span style="color: #354fcf;">'availability_date'</span>, <span style="color: #354fcf;">'expected_price'</span>, <span style="color: #354fcf;">'apartment_area'</span>,
+                              <span style="color: #354fcf;">'terrace_area'</span>, <span style="color: #354fcf;">'total_area'</span>, <span style="color: #354fcf;">'user_id'</span>, <span style="color: #354fcf;">'best_price'</span><span style="color: #dd22dd;">]</span><span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">offers</span> <span style="font-weight: bold;">=</span> <span style="color: #721045;">db_interact</span><span style="color: #000000;">(</span>uid, password, <span style="color: #354fcf;">'realtor.offer'</span>, <span style="color: #354fcf;">'search_read'</span>, <span style="color: #dd22dd;">[</span><span style="color: #354fcf;">'price'</span>, <span style="color: #354fcf;">'partner_id'</span>, <span style="color: #354fcf;">'property_id'</span><span style="color: #dd22dd;">]</span><span style="color: #000000;">)</span>
+
+    <span style="color: #595959; font-style: italic;"># Align apartments and products and the same ids since 'apart_id' and 'property_id' refers to 'id'</span>
+    <span style="color: #595959; font-style: italic;"># they have the same number of elements</span>
+    <span style="color: #005e8b;">apartments</span> <span style="font-weight: bold;">=</span> <span style="color: #8f0075; font-weight: bold;">sorted</span><span style="color: #000000;">(</span>apartments, key<span style="font-weight: bold;">=</span><span style="color: #531ab6; font-weight: bold;">lambda</span> <span style="color: #005e8b;">x</span>: x<span style="color: #dd22dd;">[</span><span style="color: #354fcf;">'id'</span><span style="color: #dd22dd;">]</span><span style="color: #000000;">)</span> <span style="color: #595959; font-style: italic;"># id is an int</span>
+    <span style="color: #005e8b;">products</span> <span style="font-weight: bold;">=</span> <span style="color: #8f0075; font-weight: bold;">sorted</span><span style="color: #000000;">(</span>products, key<span style="font-weight: bold;">=</span><span style="color: #531ab6; font-weight: bold;">lambda</span> <span style="color: #005e8b;">x</span>: x<span style="color: #dd22dd;">[</span><span style="color: #354fcf;">'apart_id'</span><span style="color: #dd22dd;">][</span><span style="color: #0000b0;">0</span><span style="color: #dd22dd;">]</span><span style="color: #000000;">)</span>  <span style="color: #595959; font-style: italic;"># apart_id is a list like [1, 'Apartment']</span>
+    <span style="color: #595959; font-style: italic;"># Offers keeps track of all the offers, but we want only the latest offer, which is the greatest in value</span>
+    <span style="color: #005e8b;">offers</span> <span style="font-weight: bold;">=</span> <span style="color: #8f0075; font-weight: bold;">sorted</span><span style="color: #000000;">(</span>offers, key<span style="font-weight: bold;">=</span><span style="color: #531ab6; font-weight: bold;">lambda</span> <span style="color: #005e8b;">x</span>: x<span style="color: #dd22dd;">[</span><span style="color: #354fcf;">'property_id'</span><span style="color: #dd22dd;">][</span><span style="color: #0000b0;">0</span><span style="color: #dd22dd;">]</span><span style="color: #000000;">)</span>   <span style="color: #595959; font-style: italic;"># property_id is a list like [1, 'Apartment']</span>
+    <span style="color: #595959; font-style: italic;"># Since the offers are sorted, group by property id and get the first element (the greatest) of each group</span>
+    <span style="color: #005e8b;">offers</span> <span style="font-weight: bold;">=</span> <span style="color: #000000;">[</span><span style="color: #8f0075; font-weight: bold;">next</span><span style="color: #dd22dd;">(</span>g<span style="color: #dd22dd;">)</span> <span style="color: #531ab6; font-weight: bold;">for</span> <span style="color: #005e8b;">_</span>, <span style="color: #005e8b;">g</span> <span style="font-weight: bold;">in</span> itertools.groupby<span style="color: #dd22dd;">(</span>offers, <span style="color: #531ab6; font-weight: bold;">lambda</span> <span style="color: #005e8b;">x</span>: x<span style="color: #008899;">[</span><span style="color: #354fcf;">'property_id'</span><span style="color: #008899;">][</span><span style="color: #0000b0;">0</span><span style="color: #008899;">]</span><span style="color: #dd22dd;">)</span><span style="color: #000000;">]</span>
+    <span style="color: #531ab6; font-weight: bold;">for</span> <span style="color: #005e8b;">apart</span>, <span style="color: #005e8b;">prod</span>, <span style="color: #005e8b;">offer</span> <span style="font-weight: bold;">in</span> <span style="color: #8f0075; font-weight: bold;">zip</span><span style="color: #000000;">(</span>apartments, products, offers<span style="color: #000000;">)</span>:
+        apart<span style="color: #000000;">[</span><span style="color: #005e8b;">'quantity'</span><span style="color: #000000;">]</span> <span style="font-weight: bold;">=</span> prod<span style="color: #000000;">[</span><span style="color: #354fcf;">'qty_available'</span><span style="color: #000000;">]</span>
+        apart<span style="color: #000000;">[</span><span style="color: #005e8b;">'user_id'</span><span style="color: #000000;">]</span> <span style="font-weight: bold;">=</span> apart<span style="color: #000000;">[</span><span style="color: #354fcf;">'user_id'</span><span style="color: #000000;">][</span><span style="color: #0000b0;">1</span><span style="color: #000000;">]</span>  <span style="color: #595959; font-style: italic;"># Keep the seller's name but not the ID, format is [1, "name"] otherwise</span>
+        <span style="color: #595959; font-style: italic;"># offer['partner_id'] is like [1, 'name'] so grab the first element</span>
+        <span style="color: #595959; font-style: italic;"># the output of execute is a list of dict, same logic and grab the only element</span>
+        apart<span style="color: #000000;">[</span><span style="color: #005e8b;">'partner_id'</span><span style="color: #000000;">]</span> <span style="font-weight: bold;">=</span> \
+            <span style="color: #0000b0; font-weight: bold;">MODELS</span>.execute_kw<span style="color: #000000;">(</span><span style="color: #0000b0; font-weight: bold;">DB</span>, uid, password, <span style="color: #354fcf;">'res.partner'</span>, <span style="color: #354fcf;">'search_read'</span>, <span style="color: #dd22dd;">[</span><span style="color: #008899;">[</span><span style="color: #972500;">[</span><span style="color: #354fcf;">'id'</span>, <span style="color: #354fcf;">'='</span>, offer<span style="color: #808000;">[</span><span style="color: #354fcf;">'partner_id'</span><span style="color: #808000;">][</span><span style="color: #0000b0;">0</span><span style="color: #808000;">]</span><span style="color: #972500;">]</span><span style="color: #008899;">]</span><span style="color: #dd22dd;">]</span>,
+                              <span style="color: #dd22dd;">{</span><span style="color: #354fcf;">'fields'</span>: <span style="color: #008899;">[</span><span style="color: #354fcf;">'id'</span>, <span style="color: #354fcf;">'name'</span><span style="color: #008899;">]</span><span style="color: #dd22dd;">}</span><span style="color: #000000;">)[</span><span style="color: #0000b0;">0</span><span style="color: #000000;">][</span><span style="color: #354fcf;">'name'</span><span style="color: #000000;">]</span>
+
+    <span style="color: #531ab6; font-weight: bold;">return</span> apartments
+
+<span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">create_offer</span><span style="color: #000000;">(</span><span style="color: #005e8b;">uid</span>, <span style="color: #005e8b;">password</span>, <span style="color: #005e8b;">partner_name</span>, <span style="color: #005e8b;">offer_amt</span>, <span style="color: #005e8b;">apart_id</span><span style="color: #000000;">)</span>:
+    <span style="color: #005e8b;">partner</span> <span style="font-weight: bold;">=</span> <span style="color: #0000b0; font-weight: bold;">MODELS</span>.execute_kw<span style="color: #000000;">(</span><span style="color: #0000b0; font-weight: bold;">DB</span>, uid, password, <span style="color: #354fcf;">'res.partner'</span>, <span style="color: #354fcf;">'search_read'</span>, <span style="color: #dd22dd;">[</span>
+        <span style="color: #008899;">[</span><span style="color: #972500;">[</span><span style="color: #354fcf;">'name'</span>, <span style="color: #354fcf;">'='</span>, partner_name<span style="color: #972500;">]</span><span style="color: #008899;">]</span><span style="color: #dd22dd;">]</span>, <span style="color: #dd22dd;">{</span><span style="color: #354fcf;">'fields'</span>: <span style="color: #008899;">[</span><span style="color: #354fcf;">'id'</span>, <span style="color: #354fcf;">'name'</span><span style="color: #008899;">]</span><span style="color: #dd22dd;">}</span><span style="color: #000000;">)</span>
+    <span style="color: #531ab6; font-weight: bold;">if</span> <span style="font-weight: bold;">not</span> partner:
+        <span style="color: #005e8b;">partner_id</span> <span style="font-weight: bold;">=</span> <span style="color: #0000b0; font-weight: bold;">MODELS</span>.execute_kw<span style="color: #000000;">(</span><span style="color: #0000b0; font-weight: bold;">DB</span>, uid, password, <span style="color: #354fcf;">'res.partner'</span>, <span style="color: #354fcf;">'create'</span>, <span style="color: #dd22dd;">[</span><span style="color: #008899;">{</span><span style="color: #354fcf;">'name'</span>: partner_name<span style="color: #008899;">}</span><span style="color: #dd22dd;">]</span><span style="color: #000000;">)</span>
+    <span style="color: #531ab6; font-weight: bold;">else</span>:
+        <span style="color: #005e8b;">partner_id</span> <span style="font-weight: bold;">=</span> partner<span style="color: #000000;">[</span><span style="color: #0000b0;">0</span><span style="color: #000000;">][</span><span style="color: #354fcf;">'id'</span><span style="color: #000000;">]</span>  <span style="color: #595959; font-style: italic;"># Same issue with the result of a search_read query</span>
+
+    <span style="color: #0000b0; font-weight: bold;">MODELS</span>.execute_kw<span style="color: #000000;">(</span><span style="color: #0000b0; font-weight: bold;">DB</span>, uid, password, <span style="color: #354fcf;">'realtor.offer'</span>, <span style="color: #354fcf;">'create'</span>, <span style="color: #dd22dd;">[</span><span style="color: #008899;">{</span><span style="color: #354fcf;">'price'</span>: offer_amt,
+                                                                      <span style="color: #354fcf;">'partner_id'</span>: partner_id,
+                                                                      <span style="color: #354fcf;">'property_id'</span>: apart_id<span style="color: #008899;">}</span><span style="color: #dd22dd;">]</span><span style="color: #000000;">)</span>
+</code></pre>
+</div>
 </section>
 </section>
 <section>
-<section id="slide-org2f37026">
-<h2 id="org2f37026"><span class="section-number-2">4.</span> Conclusion</h2>
+<section id="slide-orgde46229">
+<h2 id="orgde46229"><span class="section-number-2">4.</span> Conclusion</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+</section>
+<section id="slide-org1cb5060">
+<h3 id="org1cb5060"><span class="section-number-3">4.1.</span> Odoo</h3>
+</section>
+<section id="slide-org7f479ae">
+<h3 id="org7f479ae"><span class="section-number-3">4.2.</span> Django</h3>
+</section>
+<section id="slide-org871e78f">
+<h3 id="org871e78f"><span class="section-number-3">4.3.</span> Améliorations possibles</h3>
 </section>
 </section>
 <section>
-<section id="slide-org75d8eb0" data-background="#bde0fe">
-<h2 id="org75d8eb0"><span class="section-number-2">5.</span> Questions ?</h2>
+<section id="slide-org9d17537" data-background="#bde0fe">
+<h2 id="org9d17537"><span class="section-number-2">5.</span> Questions ?</h2>
 </section>
 </section>
 </div>
