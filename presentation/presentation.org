@@ -759,8 +759,12 @@ def create_offer(uid, password, partner_name, offer_amt, apart_id):
 #+end_src
 * Conclusion
 ** Odoo
+- Gestion des modèles et de a logique business.
+- Gestion des vues XML.
+- Création de données factices.    
 ** Django
-** Améliorations possibles
+- Interaction avec Odoo via XML-RPC.
+- Création de vues web.    
 * Questions ?
 :properties:
 :reveal_background: #bde0fe
