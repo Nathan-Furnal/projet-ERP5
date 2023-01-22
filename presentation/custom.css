@@ -1,0 +1,15 @@
+.reveal org-src-container { width: 100% }
+
+.reveal src {width: 100%;}
+
+.reveal pre code {max-height: 600px}
+
+p code {
+  background-color: #e5eaf5;
+  color: navy;
+}
+
+li code{
+    background-color: #e5eaf5;
+    color: navy;
+}

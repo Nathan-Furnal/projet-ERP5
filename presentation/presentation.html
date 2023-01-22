@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Présentation du projet - ERPG5</title>
+<meta name="author" content="Nathan Furnal"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/white.css" id="theme"/>
+
+<link rel="stylesheet" href="./custom.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+
+        <style>
+        /* From: https://endlessparentheses.com/public/css/endless.css */
+        /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+        kbd
+        {
+          -moz-border-radius: 6px;
+          -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          -webkit-border-radius: 6px;
+          -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          background-color: #f7f7f7;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          color: #333;
+          display: inline-block;
+          font-family: 'Droid Sans Mono', monospace;
+          font-size: 80%;
+          font-weight: normal;
+          line-height: inherit;
+          margin: 0 .1em;
+          padding: .08em .4em;
+          text-shadow: 0 1px 0 #fff;
+          word-spacing: -4px;
+        
+          box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+        }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+        <script type="text/javascript">
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+            }
+        </script>
+        
+         <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+          <script>
+                 $(document).ready(function() {
+                     $('.tooltip').tooltipster({
+                         theme: 'tooltipster-punk',
+                         contentAsHTML: true,
+                         animation: 'grow',
+                         delay: [100,500],
+                         // trigger: 'click'
+                         trigger: 'custom',
+                         triggerOpen: {
+                             mouseenter: true
+                         },
+                         triggerClose: {
+                             originClick: true,
+                             scroll: true
+                         }
+         });
+                 });
+             </script>
+        
+        <style>
+           abbr {color: red;}
+        
+           .tooltip { border-bottom: 1px dotted #000;
+                      color:red;
+                      text-decoration: none;}
+        </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Présentation du projet - ERPG5</h1><p class="subtitle"></p>
+<h2 class="author">Nathan Furnal</h2>
+</section>
+<section id="sec-table-of-contents"><div id="table-of-contents" role="doc-toc">
+<h2>Table des matières</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-org98b8044">1. Présentation</a>
+<ul>
+<li><a href="#/slide-org26443e4">1.1. Présentation du projet</a></li>
+</ul>
+</li>
+<li><a href="#/slide-org2d0425e">2. Architecture du projet</a>
+<ul>
+<li><a href="#/slide-org49824c6">2.1. Odoo</a></li>
+<li><a href="#/slide-org4ba5adb">2.2. Django</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orgbbcf2d1">3. Le <i>Business Object</i> Appartement</a></li>
+<li><a href="#/slide-org346c82b">4. Vues Odoo</a></li>
+<li><a href="#/slide-orgcda5db6">5. Chargement des données</a></li>
+<li><a href="#/slide-org6b313f7">6. Connexion au service web</a></li>
+<li><a href="#/slide-orga958a3b">7. Gestion des stocks</a></li>
+<li><a href="#/slide-org50ab785">8. Interface Django</a></li>
+<li><a href="#/slide-org2a41237">9. Conclusion</a></li>
+<li><a href="#/slide-org26b0986">10. Questions ?</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-org98b8044">
+<h2 id="org98b8044"><span class="section-number-2">1.</span> Présentation</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+</section>
+<section id="slide-org26443e4">
+<h3 id="org26443e4"><span class="section-number-3">1.1.</span> Présentation du projet</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+</section>
+<section id="slide-orgdd022e7">
+<h4 id="orgdd022e7"><span class="section-number-4">1.1.1.</span> Odoo</h4>
+<p>
+La partie Odoo est sous <code>odoo-app</code>.
+</p>
+
+<ul>
+<li>Séparation Modèles et Vues.</li>
+<li>La partie Odoo est dans un <i>container</i> sous Odoo 14 et PostgreSQL 13.</li>
+<li>Données fictives via les fichiers <code>demo.xml</code> et <code>stock_demo.xml</code>.</li>
+<li>Gestion des permissions par le <code>security/ir.model.access.csv</code>.</li>
+
+</ul>
+
+</section>
+<section id="slide-org602c07d">
+<h4 id="org602c07d"><span class="section-number-4">1.1.2.</span> Django</h4>
+<ul>
+<li>La partie Django est sous <code>realtorclient</code>
+<ul>
+<li>L'application de connexion est sous <code>odoo_connect</code></li>
+<li>L'application d'achat d'appartement est sous <code>odoo_realtor</code></li>
+
+</ul></li>
+<li>La partie Django est locale et nécessite un environnement virtuel en local.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org2d0425e">
+<h2 id="org2d0425e"><span class="section-number-2">2.</span> Architecture du projet</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+</section>
+<section id="slide-org49824c6">
+<h3 id="org49824c6"><span class="section-number-3">2.1.</span> Odoo</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+</section>
+<section id="slide-org6444a82">
+<h4 id="org6444a82"><span class="section-number-4">2.1.1.</span> <i>Business Object</i> Appartement</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">from</span> dateutil.relativedelta <span style="color: #531ab6; font-weight: bold;">import</span> relativedelta
+
+<span style="color: #531ab6; font-weight: bold;">from</span> odoo <span style="color: #531ab6; font-weight: bold;">import</span> api, fields, models
+<span style="color: #531ab6; font-weight: bold;">from</span> odoo.exceptions <span style="color: #531ab6; font-weight: bold;">import</span> <span style="color: #005f5f; font-weight: bold;">UserError</span>, <span style="color: #005f5f; font-weight: bold;">ValidationError</span>
+<span style="color: #531ab6; font-weight: bold;">from</span> odoo.tools <span style="color: #531ab6; font-weight: bold;">import</span> float_compare, float_is_zero
+
+<span style="color: #531ab6; font-weight: bold;">class</span> <span style="color: #005f5f; font-weight: bold;">RealtorApartment</span><span style="color: #000000;">(</span>models.<span style="color: #005f5f; font-weight: bold;">Model</span><span style="color: #000000;">)</span>:
+    <span style="color: #005e8b;">_name</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">'realtor.apartment'</span>
+    <span style="color: #005e8b;">_description</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">'An apartement unit'</span>
+
+    <span style="color: #005e8b;">_sql_constraints</span> <span style="font-weight: bold;">=</span> <span style="color: #000000;">[</span>
+        <span style="color: #dd22dd;">(</span><span style="color: #354fcf;">"check_expected_price"</span>, <span style="color: #354fcf;">"CHECK(expected_price &gt; 0)"</span>, <span style="color: #354fcf;">"The expected price must be strictly positive"</span><span style="color: #dd22dd;">)</span>,
+        <span style="color: #dd22dd;">(</span><span style="color: #354fcf;">"check_best_price"</span>, <span style="color: #354fcf;">"CHECK(best_price &gt;= 0)"</span>, <span style="color: #354fcf;">"The best offer price must be positive"</span><span style="color: #dd22dd;">)</span>,
+        <span style="color: #dd22dd;">(</span><span style="color: #354fcf;">"check_apart_area"</span>, <span style="color: #354fcf;">"CHECK(apartment_area &gt; 0)"</span>, <span style="color: #354fcf;">"The apartment area must be strictly positive"</span><span style="color: #dd22dd;">)</span>,
+    <span style="color: #000000;">]</span>
+
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">_default_date_availability</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">return</span> fields.<span style="color: #005f5f; font-weight: bold;">Date</span>.context_today<span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span> <span style="font-weight: bold;">+</span> <span style="color: #721045;">relativedelta</span><span style="color: #000000;">(</span>months<span style="font-weight: bold;">=</span><span style="color: #0000b0;">3</span><span style="color: #000000;">)</span>    
+
+    <span style="color: #005e8b;">name</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Char</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Title"</span>, required<span style="font-weight: bold;">=</span><span style="color: #0000b0;">True</span><span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">desc</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Text</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Description"</span><span style="color: #000000;">)</span>
+
+    <span style="color: #005e8b;">img</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Image</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Apartment's picture"</span><span style="color: #000000;">)</span>
+
+    <span style="color: #005e8b;">availability_date</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Date</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Available from"</span>,
+                                    default<span style="font-weight: bold;">=</span><span style="color: #531ab6; font-weight: bold;">lambda</span> <span style="color: #531ab6; font-weight: bold;">self</span>: <span style="color: #531ab6; font-weight: bold;">self</span>._default_date_availability<span style="color: #dd22dd;">()</span>, copy<span style="font-weight: bold;">=</span><span style="color: #0000b0;">False</span><span style="color: #000000;">)</span>
+
+    <span style="color: #005e8b;">expected_price</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Float</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Expected Price"</span>, required<span style="font-weight: bold;">=</span><span style="color: #0000b0;">True</span><span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">best_price</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Float</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Best Offer"</span>, compute<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"_compute_best_price"</span>, help<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"Best offer received"</span><span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">selling_price</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Float</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Selling Price"</span>, copy<span style="font-weight: bold;">=</span><span style="color: #0000b0;">False</span>, readonly<span style="font-weight: bold;">=</span><span style="color: #0000b0;">True</span><span style="color: #000000;">)</span>
+
+    <span style="color: #005e8b;">apartment_area</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Integer</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Apartment area"</span><span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">terrace_area</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Integer</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Terrace Area"</span><span style="color: #000000;">)</span>
+
+    <span style="color: #005e8b;">total_area</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Integer</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Total area"</span>, compute<span style="font-weight: bold;">=</span><span style="color: #354fcf;">'_compute_total_area'</span><span style="color: #000000;">)</span>
+
+    <span style="color: #595959; font-style: italic;"># Special   </span>
+    <span style="color: #005e8b;">state</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Selection</span><span style="color: #000000;">(</span>
+        selection<span style="font-weight: bold;">=</span><span style="color: #dd22dd;">[</span>
+            <span style="color: #008899;">(</span><span style="color: #354fcf;">"new"</span>, <span style="color: #354fcf;">"New"</span><span style="color: #008899;">)</span>,
+            <span style="color: #008899;">(</span><span style="color: #354fcf;">"offer_received"</span>, <span style="color: #354fcf;">"Offer Received"</span><span style="color: #008899;">)</span>,
+            <span style="color: #008899;">(</span><span style="color: #354fcf;">"offer_accepted"</span>, <span style="color: #354fcf;">"Offer Accepted"</span><span style="color: #008899;">)</span>,
+            <span style="color: #008899;">(</span><span style="color: #354fcf;">"sold"</span>, <span style="color: #354fcf;">"Sold"</span><span style="color: #008899;">)</span>,
+            <span style="color: #008899;">(</span><span style="color: #354fcf;">"canceled"</span>, <span style="color: #354fcf;">"Canceled"</span><span style="color: #008899;">)</span>,
+        <span style="color: #dd22dd;">]</span>,
+        string<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"Status"</span>,
+        required<span style="font-weight: bold;">=</span><span style="color: #0000b0;">True</span>,
+        copy<span style="font-weight: bold;">=</span><span style="color: #0000b0;">False</span>,
+        default<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"new"</span>,
+    <span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">active</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Boolean</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Active"</span>, default<span style="font-weight: bold;">=</span><span style="color: #0000b0;">True</span><span style="color: #000000;">)</span>
+
+    <span style="color: #005e8b;">user_id</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Many2one</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"res.users"</span>, string<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"Salesman"</span>, default<span style="font-weight: bold;">=</span><span style="color: #531ab6; font-weight: bold;">lambda</span> <span style="color: #531ab6; font-weight: bold;">self</span>: <span style="color: #531ab6; font-weight: bold;">self</span>.env.user<span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">buyer_id</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Many2one</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"res.partner"</span>, string<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"Buyer"</span>, readonly<span style="font-weight: bold;">=</span><span style="color: #0000b0;">True</span>, copy<span style="font-weight: bold;">=</span><span style="color: #0000b0;">False</span><span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">offer_ids</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">One2many</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"realtor.offer"</span>, <span style="color: #354fcf;">"property_id"</span>, string<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"Offers"</span><span style="color: #000000;">)</span>
+
+    <span style="color: #a0132f; font-weight: bold;">@</span><span style="color: #a0132f;">api.</span><span style="color: #a0132f;">depends</span><span style="color: #000000;">(</span><span style="color: #354fcf;">'apartment_area'</span><span style="color: #a0132f;">, </span><span style="color: #354fcf;">'terrace_area'</span><span style="color: #000000;">)</span>
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">_compute_total_area</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">for</span> <span style="color: #005e8b;">prop</span> <span style="font-weight: bold;">in</span> <span style="color: #531ab6; font-weight: bold;">self</span>:
+            prop.<span style="color: #005e8b;">total_area</span> <span style="font-weight: bold;">=</span> prop.apartment_area <span style="font-weight: bold;">+</span> prop.terrace_area
+
+    <span style="color: #a0132f; font-weight: bold;">@</span><span style="color: #a0132f;">api.</span><span style="color: #a0132f;">depends</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"offer_ids.price"</span><span style="color: #000000;">)</span>
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">_compute_best_price</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">for</span> <span style="color: #005e8b;">prop</span> <span style="font-weight: bold;">in</span> <span style="color: #531ab6; font-weight: bold;">self</span>:
+            prop.<span style="color: #005e8b;">best_price</span> <span style="font-weight: bold;">=</span> <span style="color: #8f0075; font-weight: bold;">max</span><span style="color: #000000;">(</span>prop.offer_ids.mapped<span style="color: #dd22dd;">(</span><span style="color: #354fcf;">"price"</span><span style="color: #dd22dd;">)</span><span style="color: #000000;">)</span> <span style="color: #531ab6; font-weight: bold;">if</span> prop.offer_ids <span style="color: #531ab6; font-weight: bold;">else</span> <span style="color: #0000b0;">0.0</span>            
+
+
+    <span style="color: #a0132f; font-weight: bold;">@</span><span style="color: #a0132f;">api.</span><span style="color: #a0132f;">constrains</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"expected_price"</span><span style="color: #a0132f;">, </span><span style="color: #354fcf;">"best_price"</span><span style="color: #000000;">)</span>
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">_check_price_difference</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">for</span> <span style="color: #005e8b;">prop</span> <span style="font-weight: bold;">in</span> <span style="color: #531ab6; font-weight: bold;">self</span>:
+            <span style="color: #531ab6; font-weight: bold;">if</span> <span style="color: #000000;">(</span>
+                <span style="font-weight: bold;">not</span> <span style="color: #721045;">float_is_zero</span><span style="color: #dd22dd;">(</span>prop.best_price, precision_rounding<span style="font-weight: bold;">=</span><span style="color: #0000b0;">0.01</span><span style="color: #dd22dd;">)</span>
+                <span style="font-weight: bold;">and</span> <span style="color: #721045;">float_compare</span><span style="color: #dd22dd;">(</span>prop.best_price,
+                                  prop.expected_price <span style="font-weight: bold;">*</span> <span style="color: #0000b0;">90.0</span> <span style="font-weight: bold;">/</span> <span style="color: #0000b0;">100.0</span>, precision_rounding<span style="font-weight: bold;">=</span><span style="color: #0000b0;">0.01</span><span style="color: #dd22dd;">)</span> <span style="font-weight: bold;">&lt;</span> <span style="color: #0000b0;">0</span>
+            <span style="color: #000000;">)</span>:
+                <span style="color: #531ab6; font-weight: bold;">raise</span> <span style="color: #005f5f; font-weight: bold;">ValidationError</span><span style="color: #000000;">(</span>
+                    <span style="color: #354fcf;">"The BEST price must be at least 90% of the expected price! "</span>
+                    <span style="font-weight: bold;">+</span> <span style="color: #354fcf;">"You must reduce the expected price if you want to accept this offer."</span>
+                <span style="color: #000000;">)</span>
+
+    <span style="color: #a0132f; font-weight: bold;">@</span><span style="color: #a0132f;">api.</span><span style="color: #a0132f;">constrains</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"expected_price"</span><span style="color: #a0132f;">, </span><span style="color: #354fcf;">"selling_price"</span><span style="color: #000000;">)</span>
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">_check_price_difference</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">for</span> <span style="color: #005e8b;">prop</span> <span style="font-weight: bold;">in</span> <span style="color: #531ab6; font-weight: bold;">self</span>:
+            <span style="color: #531ab6; font-weight: bold;">if</span> <span style="color: #000000;">(</span>
+                <span style="font-weight: bold;">not</span> <span style="color: #721045;">float_is_zero</span><span style="color: #dd22dd;">(</span>prop.selling_price, precision_rounding<span style="font-weight: bold;">=</span><span style="color: #0000b0;">0.01</span><span style="color: #dd22dd;">)</span>
+                <span style="font-weight: bold;">and</span> <span style="color: #721045;">float_compare</span><span style="color: #dd22dd;">(</span>prop.selling_price,
+                                  prop.expected_price <span style="font-weight: bold;">*</span> <span style="color: #0000b0;">90.0</span> <span style="font-weight: bold;">/</span> <span style="color: #0000b0;">100.0</span>, precision_rounding<span style="font-weight: bold;">=</span><span style="color: #0000b0;">0.01</span><span style="color: #dd22dd;">)</span> <span style="font-weight: bold;">&lt;</span> <span style="color: #0000b0;">0</span>
+            <span style="color: #000000;">)</span>:
+                <span style="color: #531ab6; font-weight: bold;">raise</span> <span style="color: #005f5f; font-weight: bold;">ValidationError</span><span style="color: #000000;">(</span>
+                    <span style="color: #354fcf;">"The SELLING price must be at least 90% of the expected price! "</span>
+                    <span style="font-weight: bold;">+</span> <span style="color: #354fcf;">"You must reduce the expected price if you want to accept this offer."</span>
+                <span style="color: #000000;">)</span>   
+
+    <span style="color: #595959; font-style: italic;"># ------------------------------------------ CRUD Methods -------------------------------------</span>
+
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">unlink</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">if</span> <span style="font-weight: bold;">not</span> <span style="color: #8f0075; font-weight: bold;">set</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span>.mapped<span style="color: #dd22dd;">(</span><span style="color: #354fcf;">"state"</span><span style="color: #dd22dd;">)</span><span style="color: #000000;">)</span> <span style="font-weight: bold;">&lt;=</span> <span style="color: #000000;">{</span><span style="color: #354fcf;">"new"</span>, <span style="color: #354fcf;">"canceled"</span><span style="color: #000000;">}</span>:
+            <span style="color: #531ab6; font-weight: bold;">raise</span> <span style="color: #005f5f; font-weight: bold;">UserError</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Only new and canceled properties can be deleted."</span><span style="color: #000000;">)</span>
+        <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #8f0075; font-weight: bold;">super</span><span style="color: #000000;">()</span>.unlink<span style="color: #000000;">()</span>
+
+    <span style="color: #595959; font-style: italic;"># ---------------------------------------- Action Methods -------------------------------------</span>
+
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">action_sold</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">if</span> <span style="color: #354fcf;">"canceled"</span> <span style="font-weight: bold;">in</span> <span style="color: #531ab6; font-weight: bold;">self</span>.mapped<span style="color: #000000;">(</span><span style="color: #354fcf;">"state"</span><span style="color: #000000;">)</span>:
+            <span style="color: #531ab6; font-weight: bold;">raise</span> <span style="color: #005f5f; font-weight: bold;">UserError</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Canceled properties cannot be sold."</span><span style="color: #000000;">)</span>
+        <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #531ab6; font-weight: bold;">self</span>.write<span style="color: #000000;">(</span><span style="color: #dd22dd;">{</span><span style="color: #354fcf;">"state"</span>: <span style="color: #354fcf;">"sold"</span><span style="color: #dd22dd;">}</span><span style="color: #000000;">)</span>
+
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">action_cancel</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">if</span> <span style="color: #354fcf;">"sold"</span> <span style="font-weight: bold;">in</span> <span style="color: #531ab6; font-weight: bold;">self</span>.mapped<span style="color: #000000;">(</span><span style="color: #354fcf;">"state"</span><span style="color: #000000;">)</span>:
+            <span style="color: #531ab6; font-weight: bold;">raise</span> <span style="color: #005f5f; font-weight: bold;">UserError</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Sold properties cannot be canceled."</span><span style="color: #000000;">)</span>
+        <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #531ab6; font-weight: bold;">self</span>.write<span style="color: #000000;">(</span><span style="color: #dd22dd;">{</span><span style="color: #354fcf;">"state"</span>: <span style="color: #354fcf;">"canceled"</span><span style="color: #dd22dd;">}</span><span style="color: #000000;">)</span>             
+</code></pre>
+</div>
+</section>
+<section id="slide-org84d4f6d">
+<h4 id="org84d4f6d"><span class="section-number-4">2.1.2.</span> <i>Business Object</i> Offre</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">from</span> dateutil.relativedelta <span style="color: #531ab6; font-weight: bold;">import</span> relativedelta
+
+<span style="color: #531ab6; font-weight: bold;">from</span> odoo <span style="color: #531ab6; font-weight: bold;">import</span> api, fields, models
+<span style="color: #531ab6; font-weight: bold;">from</span> odoo.exceptions <span style="color: #531ab6; font-weight: bold;">import</span> <span style="color: #005f5f; font-weight: bold;">UserError</span>
+<span style="color: #531ab6; font-weight: bold;">from</span> odoo.tools <span style="color: #531ab6; font-weight: bold;">import</span> float_compare
+
+
+<span style="color: #531ab6; font-weight: bold;">class</span> <span style="color: #005f5f; font-weight: bold;">RealtorOffer</span><span style="color: #000000;">(</span>models.<span style="color: #005f5f; font-weight: bold;">Model</span><span style="color: #000000;">)</span>:
+
+    <span style="color: #595959; font-style: italic;"># ---------------------------------------- Private Attributes ---------------------------------</span>
+
+    <span style="color: #005e8b;">_name</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">"realtor.offer"</span>
+    <span style="color: #005e8b;">_description</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">"Real Estate Property Offer"</span>
+    <span style="color: #005e8b;">_order</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">"price desc"</span>
+    <span style="color: #005e8b;">_sql_constraints</span> <span style="font-weight: bold;">=</span> <span style="color: #000000;">[</span>
+        <span style="color: #dd22dd;">(</span><span style="color: #354fcf;">"check_price"</span>, <span style="color: #354fcf;">"CHECK(price &gt; 0)"</span>, <span style="color: #354fcf;">"The price must be strictly positive"</span><span style="color: #dd22dd;">)</span>,
+    <span style="color: #000000;">]</span>
+
+    <span style="color: #595959; font-style: italic;"># --------------------------------------- Fields Declaration ----------------------------------</span>
+
+    <span style="color: #595959; font-style: italic;"># Basic</span>
+    <span style="color: #005e8b;">price</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Float</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"Price"</span>, required<span style="font-weight: bold;">=</span><span style="color: #0000b0;">True</span><span style="color: #000000;">)</span>
+
+    <span style="color: #595959; font-style: italic;"># Relational</span>
+    <span style="color: #005e8b;">partner_id</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Many2one</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"res.partner"</span>, string<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"Partner"</span>, required<span style="font-weight: bold;">=</span><span style="color: #0000b0;">True</span><span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">property_id</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Many2one</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"realtor.apartment"</span>, string<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"Property"</span>, required<span style="font-weight: bold;">=</span><span style="color: #0000b0;">True</span><span style="color: #000000;">)</span>
+
+    <span style="color: #595959; font-style: italic;"># Special</span>
+    <span style="color: #005e8b;">state</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Selection</span><span style="color: #000000;">(</span>
+        selection<span style="font-weight: bold;">=</span><span style="color: #dd22dd;">[</span>
+            <span style="color: #008899;">(</span><span style="color: #354fcf;">"accepted"</span>, <span style="color: #354fcf;">"Accepted"</span><span style="color: #008899;">)</span>,
+            <span style="color: #008899;">(</span><span style="color: #354fcf;">"refused"</span>, <span style="color: #354fcf;">"Refused"</span><span style="color: #008899;">)</span>,
+        <span style="color: #dd22dd;">]</span>,
+        string<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"Status"</span>,
+        copy<span style="font-weight: bold;">=</span><span style="color: #0000b0;">False</span>,
+        default<span style="font-weight: bold;">=</span><span style="color: #0000b0;">False</span>,
+    <span style="color: #000000;">)</span>    
+
+    <span style="color: #595959; font-style: italic;"># ------------------------------------------ CRUD Methods -------------------------------------</span>
+
+    <span style="color: #a0132f; font-weight: bold;">@</span><span style="color: #a0132f;">api.</span><span style="color: #a0132f;">model</span>
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">create</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span>, <span style="color: #005e8b;">vals</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">if</span> vals.get<span style="color: #000000;">(</span><span style="color: #354fcf;">"property_id"</span><span style="color: #000000;">)</span> <span style="font-weight: bold;">and</span> vals.get<span style="color: #000000;">(</span><span style="color: #354fcf;">"price"</span><span style="color: #000000;">)</span>:
+            <span style="color: #005e8b;">prop</span> <span style="font-weight: bold;">=</span> <span style="color: #531ab6; font-weight: bold;">self</span>.env<span style="color: #000000;">[</span><span style="color: #354fcf;">"realtor.apartment"</span><span style="color: #000000;">]</span>.browse<span style="color: #000000;">(</span>vals<span style="color: #dd22dd;">[</span><span style="color: #354fcf;">"property_id"</span><span style="color: #dd22dd;">]</span><span style="color: #000000;">)</span>
+            <span style="color: #595959; font-style: italic;"># We check if the offer is higher than the existing offers</span>
+            <span style="color: #531ab6; font-weight: bold;">if</span> prop.offer_ids:
+                <span style="color: #005e8b;">max_offer</span> <span style="font-weight: bold;">=</span> <span style="color: #8f0075; font-weight: bold;">max</span><span style="color: #000000;">(</span>prop.mapped<span style="color: #dd22dd;">(</span><span style="color: #354fcf;">"offer_ids.price"</span><span style="color: #dd22dd;">)</span><span style="color: #000000;">)</span>
+                <span style="color: #531ab6; font-weight: bold;">if</span> <span style="color: #721045;">float_compare</span><span style="color: #000000;">(</span>vals<span style="color: #dd22dd;">[</span><span style="color: #354fcf;">"price"</span><span style="color: #dd22dd;">]</span>, max_offer, precision_rounding<span style="font-weight: bold;">=</span><span style="color: #0000b0;">0.01</span><span style="color: #000000;">)</span> <span style="font-weight: bold;">&lt;=</span> <span style="color: #0000b0;">0</span>:
+                    <span style="color: #531ab6; font-weight: bold;">raise</span> <span style="color: #005f5f; font-weight: bold;">UserError</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"The offer must be higher than %.2f"</span> <span style="font-weight: bold;">%</span> max_offer<span style="color: #000000;">)</span>
+        <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #8f0075; font-weight: bold;">super</span><span style="color: #000000;">()</span>.create<span style="color: #000000;">(</span>vals<span style="color: #000000;">)</span>
+
+ <span style="color: #595959; font-style: italic;"># ---------------------------------------- Action Methods -------------------------------------</span>
+
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">action_accept</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">if</span> <span style="color: #354fcf;">"accepted"</span> <span style="font-weight: bold;">in</span> <span style="color: #531ab6; font-weight: bold;">self</span>.mapped<span style="color: #000000;">(</span><span style="color: #354fcf;">"property_id.offer_ids.state"</span><span style="color: #000000;">)</span>:
+            <span style="color: #531ab6; font-weight: bold;">raise</span> <span style="color: #005f5f; font-weight: bold;">UserError</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"An offer as already been accepted."</span><span style="color: #000000;">)</span>
+        <span style="color: #531ab6; font-weight: bold;">self</span>.write<span style="color: #000000;">(</span>
+            <span style="color: #dd22dd;">{</span>
+                <span style="color: #354fcf;">"state"</span>: <span style="color: #354fcf;">"accepted"</span>,
+            <span style="color: #dd22dd;">}</span>
+        <span style="color: #000000;">)</span>
+        <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #531ab6; font-weight: bold;">self</span>.mapped<span style="color: #000000;">(</span><span style="color: #354fcf;">"property_id"</span><span style="color: #000000;">)</span>.write<span style="color: #000000;">(</span>
+            <span style="color: #dd22dd;">{</span>
+                <span style="color: #354fcf;">"state"</span>: <span style="color: #354fcf;">"offer_accepted"</span>,
+                <span style="color: #354fcf;">"selling_price"</span>: <span style="color: #531ab6; font-weight: bold;">self</span>.price,
+                <span style="color: #354fcf;">"buyer_id"</span>: <span style="color: #531ab6; font-weight: bold;">self</span>.partner_id.id,
+            <span style="color: #dd22dd;">}</span>
+        <span style="color: #000000;">)</span>
+
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">action_refuse</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #531ab6; font-weight: bold;">self</span>.write<span style="color: #000000;">(</span>
+            <span style="color: #dd22dd;">{</span>
+                <span style="color: #354fcf;">"state"</span>: <span style="color: #354fcf;">"refused"</span>,
+            <span style="color: #dd22dd;">}</span>
+        <span style="color: #000000;">)</span>        
+</code></pre>
+</div>
+</section>
+<section id="slide-orga74f368">
+<h4 id="orga74f368"><span class="section-number-4">2.1.3.</span> <i>Business Object</i> Produit</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">from</span> odoo <span style="color: #531ab6; font-weight: bold;">import</span> models, fields, api
+
+<span style="color: #531ab6; font-weight: bold;">class</span> <span style="color: #005f5f; font-weight: bold;">RealtorProduct</span><span style="color: #000000;">(</span>models.<span style="color: #005f5f; font-weight: bold;">Model</span><span style="color: #000000;">)</span>:
+    <span style="color: #005e8b;">_inherit</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">'product.template'</span>
+
+    <span style="color: #005e8b;">apart_id</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Many2one</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"realtor.apartment"</span>, string<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"Property"</span>, ondelete<span style="font-weight: bold;">=</span><span style="color: #354fcf;">'cascade'</span><span style="color: #000000;">)</span>
+
+    <span style="color: #005e8b;">list_price</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">Float</span><span style="color: #000000;">(</span>compute<span style="font-weight: bold;">=</span><span style="color: #354fcf;">'_update_prod_price'</span><span style="color: #000000;">)</span>
+
+    <span style="color: #a0132f; font-weight: bold;">@</span><span style="color: #a0132f;">api.</span><span style="color: #a0132f;">onchange</span><span style="color: #000000;">(</span><span style="color: #354fcf;">'apart_id'</span><span style="color: #000000;">)</span>
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">_update_prod_price</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">for</span> <span style="color: #005e8b;">el</span> <span style="font-weight: bold;">in</span> <span style="color: #531ab6; font-weight: bold;">self</span>:
+            el.<span style="color: #005e8b;">list_price</span> <span style="font-weight: bold;">=</span> el.apart_id.expected_price
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org4ba5adb">
+<h3 id="org4ba5adb"><span class="section-number-3">2.2.</span> Django</h3>
+</section>
+</section>
+<section>
+<section id="slide-orgbbcf2d1">
+<h2 id="orgbbcf2d1"><span class="section-number-2">3.</span> Le <i>Business Object</i> Appartement</h2>
+</section>
+</section>
+<section>
+<section id="slide-org346c82b">
+<h2 id="org346c82b"><span class="section-number-2">4.</span> Vues Odoo</h2>
+</section>
+</section>
+<section>
+<section id="slide-orgcda5db6">
+<h2 id="orgcda5db6"><span class="section-number-2">5.</span> Chargement des données</h2>
+</section>
+</section>
+<section>
+<section id="slide-org6b313f7">
+<h2 id="org6b313f7"><span class="section-number-2">6.</span> Connexion au service web</h2>
+</section>
+</section>
+<section>
+<section id="slide-orga958a3b">
+<h2 id="orga958a3b"><span class="section-number-2">7.</span> Gestion des stocks</h2>
+</section>
+</section>
+<section>
+<section id="slide-org50ab785">
+<h2 id="org50ab785"><span class="section-number-2">8.</span> Interface Django</h2>
+</section>
+</section>
+<section>
+<section id="slide-org2a41237">
+<h2 id="org2a41237"><span class="section-number-2">9.</span> Conclusion</h2>
+</section>
+</section>
+<section>
+<section id="slide-org26b0986" data-background="#bde0fe">
+<h2 id="org26b0986"><span class="section-number-2">10.</span> Questions ?</h2>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+slideNumber:true, width:1920, height:1024,
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+
+</script>
+</body>
+</html>
