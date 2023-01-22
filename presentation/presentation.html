@@ -103,43 +103,68 @@
 <h2>Table des matières</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-org98b8044">1. Présentation</a>
+<li><a href="#/slide-org2bfa2f4">1. Présentation</a>
 <ul>
-<li><a href="#/slide-org26443e4">1.1. Présentation du projet</a></li>
+<li><a href="#/slide-org43ec442">1.1. Présentation du projet</a>
+<ul>
+<li><a href="#/slide-org1daee9c">1.1.1. Odoo</a></li>
+<li><a href="#/slide-orga81e9b7">1.1.2. Django</a></li>
 </ul>
 </li>
-<li><a href="#/slide-org2d0425e">2. Architecture du projet</a>
-<ul>
-<li><a href="#/slide-org49824c6">2.1. Odoo</a></li>
-<li><a href="#/slide-org4ba5adb">2.2. Django</a></li>
 </ul>
 </li>
-<li><a href="#/slide-orgbbcf2d1">3. Le <i>Business Object</i> Appartement</a></li>
-<li><a href="#/slide-org346c82b">4. Vues Odoo</a></li>
-<li><a href="#/slide-orgcda5db6">5. Chargement des données</a></li>
-<li><a href="#/slide-org6b313f7">6. Connexion au service web</a></li>
-<li><a href="#/slide-orga958a3b">7. Gestion des stocks</a></li>
-<li><a href="#/slide-org50ab785">8. Interface Django</a></li>
-<li><a href="#/slide-org2a41237">9. Conclusion</a></li>
-<li><a href="#/slide-org26b0986">10. Questions ?</a></li>
+<li><a href="#/slide-org6c75f30">2. Architecture du projet</a>
+<ul>
+<li><a href="#/slide-orgeb765d8">2.1. Odoo</a>
+<ul>
+<li><a href="#/slide-orgac15d95">2.1.1. <i>Business Object</i> Appartement</a></li>
+<li><a href="#/slide-org77dcbe9">2.1.2. <i>Business Object</i> Offre</a></li>
+<li><a href="#/slide-orgea0a8bf">2.1.3. <i>Business Object</i> Produit</a></li>
+<li><a href="#/slide-org91aa632">2.1.4. <i>Business Object</i> Utilisateur</a></li>
+<li><a href="#/slide-org50417c6">2.1.5. Vues Odoo</a></li>
+<li><a href="#/slide-orgf52c08e">2.1.6. Données fictives utilisateur</a></li>
+<li><a href="#/slide-org5aa98d9">2.1.7. Données fictives de stocks</a></li>
+</ul>
+</li>
+<li><a href="#/slide-org33eedc6">2.2. Django</a>
+<ul>
+<li><a href="#/slide-orgc4c02b1">2.2.1. Application de connexion - Modèle</a></li>
+<li><a href="#/slide-org72b7728">2.2.2. Application de connexion - Vue</a></li>
+<li><a href="#/slide-org961c713">2.2.3. Application d'achat d'appartement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#/slide-orgf0fd0ea">3. Connexion au service web</a>
+<ul>
+<li><a href="#/slide-orgaa0e1fa">3.1. Connexion via XML-RPC</a>
+<ul>
+<li><a href="#/slide-org01f467d">3.1.1. Stratégie</a></li>
+<li><a href="#/slide-org6e7f16d">3.1.2. Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#/slide-org2f37026">4. Conclusion</a></li>
+<li><a href="#/slide-org75d8eb0">5. Questions ?</a></li>
 </ul>
 </div>
 </div>
 </section>
 
 <section>
-<section id="slide-org98b8044">
-<h2 id="org98b8044"><span class="section-number-2">1.</span> Présentation</h2>
+<section id="slide-org2bfa2f4">
+<h2 id="org2bfa2f4"><span class="section-number-2">1.</span> Présentation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 </section>
-<section id="slide-org26443e4">
-<h3 id="org26443e4"><span class="section-number-3">1.1.</span> Présentation du projet</h3>
+<section id="slide-org43ec442">
+<h3 id="org43ec442"><span class="section-number-3">1.1.</span> Présentation du projet</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
 </section>
-<section id="slide-orgdd022e7">
-<h4 id="orgdd022e7"><span class="section-number-4">1.1.1.</span> Odoo</h4>
+<section id="slide-org1daee9c">
+<h4 id="org1daee9c"><span class="section-number-4">1.1.1.</span> Odoo</h4>
 <p>
 La partie Odoo est sous <code>odoo-app</code>.
 </p>
@@ -153,8 +178,8 @@ La partie Odoo est sous <code>odoo-app</code>.
 </ul>
 
 </section>
-<section id="slide-org602c07d">
-<h4 id="org602c07d"><span class="section-number-4">1.1.2.</span> Django</h4>
+<section id="slide-orga81e9b7">
+<h4 id="orga81e9b7"><span class="section-number-4">1.1.2.</span> Django</h4>
 <ul>
 <li>La partie Django est sous <code>realtorclient</code>
 <ul>
@@ -169,18 +194,21 @@ La partie Odoo est sous <code>odoo-app</code>.
 </section>
 </section>
 <section>
-<section id="slide-org2d0425e">
-<h2 id="org2d0425e"><span class="section-number-2">2.</span> Architecture du projet</h2>
+<section id="slide-org6c75f30">
+<h2 id="org6c75f30"><span class="section-number-2">2.</span> Architecture du projet</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 </section>
-<section id="slide-org49824c6">
-<h3 id="org49824c6"><span class="section-number-3">2.1.</span> Odoo</h3>
+<section id="slide-orgeb765d8">
+<h3 id="orgeb765d8"><span class="section-number-3">2.1.</span> Odoo</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
 </section>
-<section id="slide-org6444a82">
-<h4 id="org6444a82"><span class="section-number-4">2.1.1.</span> <i>Business Object</i> Appartement</h4>
+<section id="slide-orgac15d95">
+<h4 id="orgac15d95"><span class="section-number-4">2.1.1.</span> <i>Business Object</i> Appartement</h4>
+<p>
+Appartement mis en vente sur la plate-forme.
+</p>
 <div class="org-src-container">
 
 <pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">from</span> dateutil.relativedelta <span style="color: #531ab6; font-weight: bold;">import</span> relativedelta
@@ -297,8 +325,11 @@ La partie Odoo est sous <code>odoo-app</code>.
 </code></pre>
 </div>
 </section>
-<section id="slide-org84d4f6d">
-<h4 id="org84d4f6d"><span class="section-number-4">2.1.2.</span> <i>Business Object</i> Offre</h4>
+<section id="slide-org77dcbe9">
+<h4 id="org77dcbe9"><span class="section-number-4">2.1.2.</span> <i>Business Object</i> Offre</h4>
+<p>
+Objet de gestion des offres sur la plate-forme.
+</p>
 <div class="org-src-container">
 
 <pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">from</span> dateutil.relativedelta <span style="color: #531ab6; font-weight: bold;">import</span> relativedelta
@@ -379,8 +410,11 @@ La partie Odoo est sous <code>odoo-app</code>.
 </code></pre>
 </div>
 </section>
-<section id="slide-orga74f368">
-<h4 id="orga74f368"><span class="section-number-4">2.1.3.</span> <i>Business Object</i> Produit</h4>
+<section id="slide-orgea0a8bf">
+<h4 id="orgea0a8bf"><span class="section-number-4">2.1.3.</span> <i>Business Object</i> Produit</h4>
+<p>
+Objet de liaison entre l'appartement et le système de stocks d'Odoo.
+</p>
 <div class="org-src-container">
 
 <pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">from</span> odoo <span style="color: #531ab6; font-weight: bold;">import</span> models, fields, api
@@ -398,50 +432,538 @@ La partie Odoo est sous <code>odoo-app</code>.
             el.<span style="color: #005e8b;">list_price</span> <span style="font-weight: bold;">=</span> el.apart_id.expected_price
 </code></pre>
 </div>
+</section>
+<section id="slide-org91aa632">
+<h4 id="org91aa632"><span class="section-number-4">2.1.4.</span> <i>Business Object</i> Utilisateur</h4>
+<p>
+Extension de la classe utilisateur pour tenir compte des appartements liés à un utilisateur.
+</p>
+<div class="org-src-container">
 
+<pre  class="src src-python"   ><code trim><span style="color: #595959; font-style: italic;"># -*- coding: utf-8 -*-</span>
+
+<span style="color: #531ab6; font-weight: bold;">from</span> odoo <span style="color: #531ab6; font-weight: bold;">import</span> fields, models
+
+
+<span style="color: #531ab6; font-weight: bold;">class</span> <span style="color: #005f5f; font-weight: bold;">ResUsers</span><span style="color: #000000;">(</span>models.<span style="color: #005f5f; font-weight: bold;">Model</span><span style="color: #000000;">)</span>:
+    <span style="color: #595959; font-style: italic;"># ---------------------------------------- Private Attributes ---------------------------------</span>
+
+    <span style="color: #005e8b;">_inherit</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">"res.users"</span>
+
+    <span style="color: #595959; font-style: italic;"># --------------------------------------- Fields Declaration ----------------------------------</span>
+    
+    <span style="color: #595959; font-style: italic;"># Relational</span>
+    <span style="color: #005e8b;">property_ids</span> <span style="font-weight: bold;">=</span> fields.<span style="color: #005f5f; font-weight: bold;">One2many</span><span style="color: #000000;">(</span>
+        <span style="color: #354fcf;">"realtor.apartment"</span>, <span style="color: #354fcf;">"user_id"</span>, string<span style="font-weight: bold;">=</span><span style="color: #354fcf;">"Properties"</span><span style="color: #000000;">)</span>
+</code></pre>
+</div>
 </section>
-<section id="slide-org4ba5adb">
-<h3 id="org4ba5adb"><span class="section-number-3">2.2.</span> Django</h3>
+<section id="slide-org50417c6">
+<h4 id="org50417c6"><span class="section-number-4">2.1.5.</span> Vues Odoo</h4>
+<p>
+Les vues sont générées via du XML, on peut créer des sous-pages et des actions qui appelleront les
+méthodes du modèle quand on remplit les champs nécessaires.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-xml"   ><code trim><span style="color: #595959;">&lt;?</span><span style="color: #531ab6; font-weight: bold;">xml</span> <span style="color: #595959; font-style: italic;">version="1.0" encoding="utf-8"</span><span style="color: #595959;">?&gt;</span>
+<span style="color: #595959;">&lt;</span><span style="color: #721045;">odoo</span><span style="color: #595959;">&gt;</span>
+
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_apartment_view_form"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"ir.ui.view"</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>realtor.apartment.form<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"model"</span><span style="color: #595959;">&gt;</span>realtor.apartment<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"arch"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"xml"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">form</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">header</span><span style="color: #595959;">&gt;</span>
+                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">button</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"action_sold"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"object"</span> <span style="color: #005e8b;">string</span>=<span style="color: #354fcf;">"Sold"</span> <span style="color: #005e8b;">states</span>=<span style="color: #354fcf;">"new,offer_received"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">button</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"action_sold"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"object"</span> <span style="color: #005e8b;">string</span>=<span style="color: #354fcf;">"Sold"</span> <span style="color: #005e8b;">states</span>=<span style="color: #354fcf;">"offer_accepted"</span> <span style="color: #005e8b;">class</span>=<span style="color: #354fcf;">"oe_highlight"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">button</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"action_cancel"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"object"</span> <span style="color: #005e8b;">string</span>=<span style="color: #354fcf;">"Cancel"</span> <span style="color: #005e8b;">states</span>=<span style="color: #354fcf;">"new,offer_received,offer_accepted"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"state"</span> <span style="color: #005e8b;">widget</span>=<span style="color: #354fcf;">"statusbar"</span> <span style="color: #005e8b;">statusbar_visible</span>=<span style="color: #354fcf;">"new,offer_received,offer_accepted,sold"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">header</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">sheet</span><span style="color: #595959;">&gt;</span>
+                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                        <span style="color: #595959;">&lt;</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"availability_date"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                        <span style="color: #595959;">&lt;</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"expected_price"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"best_price"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"selling_price"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">notebook</span><span style="color: #595959;">&gt;</span>
+                        <span style="color: #595959;">&lt;</span><span style="color: #721045;">page</span> <span style="color: #005e8b;">string</span>=<span style="color: #354fcf;">"Description"</span><span style="color: #595959;">&gt;</span>
+                            <span style="color: #595959;">&lt;</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                                <span style="color: #595959;">&lt;</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"desc"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>                    
+                                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"img"</span> <span style="color: #005e8b;">widget</span>=<span style="color: #354fcf;">"image"</span> <span style="color: #005e8b;">options</span>=<span style="color: #354fcf;">"{'size': [150, 150]}"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apartment_area"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"terrace_area"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>                            
+                                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"total_area"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                                <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                            <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">page</span><span style="color: #595959;">&gt;</span>
+                        <span style="color: #595959;">&lt;</span><span style="color: #721045;">page</span> <span style="color: #005e8b;">string</span>=<span style="color: #354fcf;">"Offers"</span><span style="color: #595959;">&gt;</span>
+                            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"offer_ids"</span> <span style="color: #005e8b;">attrs</span>=<span style="color: #354fcf;">"{'readonly': [('state', 'in', ('offer_accepted', 'sold', 'canceled'))]}"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">page</span><span style="color: #595959;">&gt;</span>
+                        <span style="color: #595959;">&lt;</span><span style="color: #721045;">page</span> <span style="color: #005e8b;">string</span>=<span style="color: #354fcf;">"Other Info"</span><span style="color: #595959;">&gt;</span>
+                            <span style="color: #595959;">&lt;</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                                <span style="color: #595959;">&lt;</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"user_id"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                                    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"buyer_id"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                                <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                            <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">group</span><span style="color: #595959;">&gt;</span>
+                        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">page</span><span style="color: #595959;">&gt;</span>
+                    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">notebook</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">sheet</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">form</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_apartment_view_tree"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"ir.ui.view"</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>realtor.apartment.tree<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"model"</span><span style="color: #595959;">&gt;</span>realtor.apartment<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"arch"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"xml"</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">tree</span> <span style="color: #005e8b;">string</span>=<span style="color: #354fcf;">"Properties"</span> <span style="color: #005e8b;">decoration-success</span>=<span style="color: #354fcf;">"state in ('offer_received', 'offer_accepted')"</span> <span style="color: #005e8b;">decoration-muted</span>=<span style="color: #354fcf;">"state == 'sold'"</span> <span style="color: #005e8b;">decoration-bf</span>=<span style="color: #354fcf;">"state == 'offer_accepted'"</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apartment_area"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"terrace_area"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>                
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"expected_price"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>    
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"selling_price"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>                                                    
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"availability_date"</span> <span style="color: #005e8b;">optional</span>=<span style="color: #354fcf;">"hide"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"state"</span> <span style="color: #005e8b;">invisible</span>=<span style="color: #354fcf;">"1"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>                
+            <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">tree</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_apartment_view_search"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"ir.ui.view"</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>realtor.apartment.search<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"model"</span><span style="color: #595959;">&gt;</span>realtor.apartment<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"arch"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"xml"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">search</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"expected_price"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apartment_area"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"terrace_area"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">filter</span> <span style="color: #005e8b;">string</span>=<span style="color: #354fcf;">"Available"</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"available"</span> <span style="color: #005e8b;">domain</span>=<span style="color: #354fcf;">"[('state', 'in', ('new', 'offer_received'))]"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>                                
+            <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">search</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_apartment_action"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"ir.actions.act_window"</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Apartments<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"res_model"</span><span style="color: #595959;">&gt;</span>realtor.apartment<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"view_mode"</span><span style="color: #595959;">&gt;</span>tree,form<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"context"</span><span style="color: #595959;">&gt;</span>{'search_default_available': 1}<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"help"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"html"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">p</span> <span style="color: #005e8b;">class</span>=<span style="color: #354fcf;">"o_view_nocontent_smiling_face"</span><span style="color: #595959;">&gt;</span>
+                Create a property advertisement
+            <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">p</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">p</span><span style="color: #595959;">&gt;</span>
+                Create real estate properties and follow the selling process.
+            <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">p</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_inherit_product_template"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"ir.ui.view"</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Apartment Product<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"model"</span><span style="color: #595959;">&gt;</span>product.template<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"inherit_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"product.product_template_form_view"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"arch"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"xml"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_variant_id"</span> <span style="color: #005e8b;">position</span>=<span style="color: #354fcf;">"after"</span><span style="color: #595959;">&gt;</span><span style="color: #595959; font-style: italic;">&lt;!-- </span><span style="color: #595959; font-style: italic;">name is mandatory</span><span style="color: #595959; font-style: italic;"> --&gt;</span>
+                <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apart_id"</span><span style="color: #595959;">&gt;</span>Apartment<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">odoo</span><span style="color: #595959;">&gt;</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-orgf52c08e">
+<h4 id="orgf52c08e"><span class="section-number-4">2.1.6.</span> Données fictives utilisateur</h4>
+<p>
+Les données sont elles aussi générées par le XML via les fichiers de démonstration, on peut créer
+des nouveaux utilisateurs, des appartements, des lignes de stocks, etc.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-xml"   ><code trim><span style="color: #595959;">&lt;</span><span style="color: #721045;">odoo</span><span style="color: #595959;">&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #721045;">data</span><span style="color: #595959;">&gt;</span>
+
+      <span style="color: #595959; font-style: italic;">&lt;!-- </span><span style="color: #595959; font-style: italic;">Initial partners, potential buyers</span><span style="color: #595959; font-style: italic;"> --&gt;</span>
+      <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"res.partner"</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_partner_01"</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Harry Potter<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"res.partner"</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_partner_02"</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Clark Kent<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"res.partner"</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_partner_03"</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Bruce Wayne<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"res.partner"</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_partner_04"</span><span style="color: #595959;">&gt;</span>
+      <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Franz Kafka<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+
+  <span style="color: #595959; font-style: italic;">&lt;!-- </span><span style="color: #595959; font-style: italic;">First apartment</span><span style="color: #595959; font-style: italic;"> --&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"realtor.apartment"</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_apart_01"</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Beautiful Apartment<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"desc"</span><span style="color: #595959;">&gt;</span>A beautiful apartment in Brussels<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"img"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"base64"</span> <span style="color: #005e8b;">file</span>=<span style="color: #354fcf;">"realtor/static/img/apart_img01.jpg"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"expected_price"</span><span style="color: #595959;">&gt;</span>350000<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apartment_area"</span><span style="color: #595959;">&gt;</span>100<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"terrace_area"</span><span style="color: #595959;">&gt;</span>20<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"state"</span><span style="color: #595959;">&gt;</span>new<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"user_id"</span> <span style="color: #005e8b;">search</span>=<span style="color: #354fcf;">"[('login','=','eugene.krabs@he2b.be')]"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+
+  <span style="color: #595959; font-style: italic;">&lt;!-- </span><span style="color: #595959; font-style: italic;">Second apartment</span><span style="color: #595959; font-style: italic;"> --&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"realtor.apartment"</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_apart_02"</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Nice Apartment<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"desc"</span><span style="color: #595959;">&gt;</span>A nice apartment in the city center<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"img"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"base64"</span> <span style="color: #005e8b;">file</span>=<span style="color: #354fcf;">"realtor/static/img/apart_img02.jpg"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"expected_price"</span><span style="color: #595959;">&gt;</span>450000<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apartment_area"</span><span style="color: #595959;">&gt;</span>132<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"terrace_area"</span><span style="color: #595959;">&gt;</span>25<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"state"</span><span style="color: #595959;">&gt;</span>new<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"user_id"</span> <span style="color: #005e8b;">search</span>=<span style="color: #354fcf;">"[('login','=','eugene.krabs@he2b.be')]"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+
+  <span style="color: #595959; font-style: italic;">&lt;!-- </span><span style="color: #595959; font-style: italic;">Third apartment</span><span style="color: #595959; font-style: italic;"> --&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"realtor.apartment"</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_apart_03"</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Amazing Apartment<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"desc"</span><span style="color: #595959;">&gt;</span>An amazing apartment near a park<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"img"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"base64"</span> <span style="color: #005e8b;">file</span>=<span style="color: #354fcf;">"realtor/static/img/apart_img03.jpg"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"expected_price"</span><span style="color: #595959;">&gt;</span>325000<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apartment_area"</span><span style="color: #595959;">&gt;</span>90<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"terrace_area"</span><span style="color: #595959;">&gt;</span>11<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"state"</span><span style="color: #595959;">&gt;</span>new<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"user_id"</span> <span style="color: #005e8b;">search</span>=<span style="color: #354fcf;">"[('login','=','sandy.cheeks@he2b.be')]"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+  
+  <span style="color: #595959; font-style: italic;">&lt;!-- </span><span style="color: #595959; font-style: italic;">Fourth apartment</span><span style="color: #595959; font-style: italic;"> --&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"realtor.apartment"</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_apart_04"</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Rundown Apartment<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"desc"</span><span style="color: #595959;">&gt;</span>A rundown apartment, looks like a shack<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"img"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"base64"</span> <span style="color: #005e8b;">file</span>=<span style="color: #354fcf;">"realtor/static/img/apart_img04.jpg"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"expected_price"</span><span style="color: #595959;">&gt;</span>175000<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apartment_area"</span><span style="color: #595959;">&gt;</span>30<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"terrace_area"</span><span style="color: #595959;">&gt;</span>2<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"state"</span><span style="color: #595959;">&gt;</span>new<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"user_id"</span> <span style="color: #005e8b;">search</span>=<span style="color: #354fcf;">"[('login','=','patrick.star@he2b.be')]"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>  
+  
+  <span style="color: #595959; font-style: italic;">&lt;!-- </span><span style="color: #595959; font-style: italic;">Fifth apartment</span><span style="color: #595959; font-style: italic;"> --&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"realtor.apartment"</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_apart_05"</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Okay Apartment<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"desc"</span><span style="color: #595959;">&gt;</span>An okay apartment, nothing special to see here folks!<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"img"</span> <span style="color: #005e8b;">type</span>=<span style="color: #354fcf;">"base64"</span> <span style="color: #005e8b;">file</span>=<span style="color: #354fcf;">"realtor/static/img/apart_img05.jpg"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"expected_price"</span><span style="color: #595959;">&gt;</span>250000<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apartment_area"</span><span style="color: #595959;">&gt;</span>70<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"terrace_area"</span><span style="color: #595959;">&gt;</span>15<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"state"</span><span style="color: #595959;">&gt;</span>new<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"user_id"</span> <span style="color: #005e8b;">search</span>=<span style="color: #354fcf;">"[('login','=','sheldon.plankton@he2b.be')]"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+  <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>            
+  
+  <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">data</span><span style="color: #595959;">&gt;</span>
+<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">odoo</span><span style="color: #595959;">&gt;</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org5aa98d9">
+<h4 id="org5aa98d9"><span class="section-number-4">2.1.7.</span> Données fictives de stocks</h4>
+<div class="org-src-container">
+
+<pre  class="src src-xml"   ><code trim><span style="color: #595959;">&lt;?</span><span style="color: #531ab6; font-weight: bold;">xml</span> <span style="color: #595959; font-style: italic;">version="1.0" encoding="utf-8"</span><span style="color: #595959;">?&gt;</span>
+<span style="color: #595959;">&lt;</span><span style="color: #721045;">odoo</span><span style="color: #595959;">&gt;</span>
+    <span style="color: #595959;">&lt;</span><span style="color: #721045;">data</span><span style="color: #595959;">&gt;</span>
+
+
+        <span style="color: #595959; font-style: italic;">&lt;!-- </span><span style="color: #595959; font-style: italic;">Resource: stock.inventory</span><span style="color: #595959; font-style: italic;"> --&gt;</span>
+
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"stock_inventory_0"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.inventory"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>Apartment Inventory<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+
+        <span style="color: #595959; font-style: italic;">&lt;!-- </span><span style="color: #595959; font-style: italic;">Templating</span><span style="color: #595959; font-style: italic;"> --&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_template_1"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"product.template"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>ApartLot1<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apart_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"realtor_apart_01"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"type"</span><span style="color: #595959;">&gt;</span>product<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_template_2"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"product.template"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>ApartLot2<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apart_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"realtor_apart_02"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"type"</span><span style="color: #595959;">&gt;</span>product<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_template_3"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"product.template"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>ApartLot3<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apart_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"realtor_apart_03"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"type"</span><span style="color: #595959;">&gt;</span>product<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_template_4"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"product.template"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>ApartLot4<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apart_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"realtor_apart_04"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"type"</span><span style="color: #595959;">&gt;</span>product<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"realtor_template_5"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"product.template"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"name"</span><span style="color: #595959;">&gt;</span>ApartLot5<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"apart_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"realtor_apart_05"</span><span style="color: #595959;">&gt;&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"type"</span><span style="color: #595959;">&gt;</span>product<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959; font-style: italic;">&lt;!-- </span><span style="color: #595959; font-style: italic;">Add apart in inventory</span><span style="color: #595959; font-style: italic;"> --&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"stock_inventory_apart1"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.inventory.line"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"realtor_template_1"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"inventory_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"stock_inventory_0"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_qty"</span><span style="color: #595959;">&gt;</span>7.0<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"location_id"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.location"</span> <span style="color: #005e8b;">eval</span>=<span style="color: #354fcf;">"obj().env.ref('stock.warehouse0').lot_stock_id.id"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"stock_inventory_apart2"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.inventory.line"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"realtor_template_2"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"inventory_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"stock_inventory_0"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_qty"</span><span style="color: #595959;">&gt;</span>8.0<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"location_id"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.location"</span> <span style="color: #005e8b;">eval</span>=<span style="color: #354fcf;">"obj().env.ref('stock.warehouse0').lot_stock_id.id"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"stock_inventory_apart3"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.inventory.line"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"realtor_template_3"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"inventory_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"stock_inventory_0"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_qty"</span><span style="color: #595959;">&gt;</span>11.0<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"location_id"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.location"</span> <span style="color: #005e8b;">eval</span>=<span style="color: #354fcf;">"obj().env.ref('stock.warehouse0').lot_stock_id.id"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"stock_inventory_apart4"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.inventory.line"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"realtor_template_4"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"inventory_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"stock_inventory_0"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_qty"</span><span style="color: #595959;">&gt;</span>10.0<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"location_id"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.location"</span> <span style="color: #005e8b;">eval</span>=<span style="color: #354fcf;">"obj().env.ref('stock.warehouse0').lot_stock_id.id"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">record</span> <span style="color: #005e8b;">id</span>=<span style="color: #354fcf;">"stock_inventory_apart5"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.inventory.line"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"realtor_template_5"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"inventory_id"</span> <span style="color: #005e8b;">ref</span>=<span style="color: #354fcf;">"stock_inventory_0"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"product_qty"</span><span style="color: #595959;">&gt;</span>3.0<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">field</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">field</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"location_id"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.location"</span> <span style="color: #005e8b;">eval</span>=<span style="color: #354fcf;">"obj().env.ref('stock.warehouse0').lot_stock_id.id"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">record</span><span style="color: #595959;">&gt;</span>        
+
+
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">function</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.inventory"</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"_action_start"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">function</span> <span style="color: #005e8b;">eval</span>=<span style="color: #354fcf;">"[[('state','=','draft'),('id', '=', ref('stock_inventory_0'))]]"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.inventory"</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"search"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">function</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #721045;">function</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.inventory"</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"action_validate"</span><span style="color: #595959;">&gt;</span>
+            <span style="color: #595959;">&lt;</span><span style="color: #721045;">function</span> <span style="color: #005e8b;">eval</span>=<span style="color: #354fcf;">"[[('state','=','confirm'),('id', '=', ref('stock_inventory_0'))]]"</span> <span style="color: #005e8b;">model</span>=<span style="color: #354fcf;">"stock.inventory"</span> <span style="color: #005e8b;">name</span>=<span style="color: #354fcf;">"search"</span><span style="color: #595959;">/</span><span style="color: #595959;">&gt;</span>
+        <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">function</span><span style="color: #595959;">&gt;</span>
+
+    <span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">data</span><span style="color: #595959;">&gt;</span>
+<span style="color: #595959;">&lt;</span><span style="color: #595959;">/</span><span style="color: #721045;">odoo</span><span style="color: #595959;">&gt;</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org33eedc6">
+<h3 id="org33eedc6"><span class="section-number-3">2.2.</span> Django</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+</section>
+<section id="slide-orgc4c02b1">
+<h4 id="orgc4c02b1"><span class="section-number-4">2.2.1.</span> Application de connexion - Modèle</h4>
+<p>
+Il y a peu à dire sur ce modèle, on crée un objet utilisateur simple et un formulaire pour le
+compléter.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">from</span> django.db <span style="color: #531ab6; font-weight: bold;">import</span> models
+
+<span style="color: #531ab6; font-weight: bold;">class</span> <span style="color: #005f5f; font-weight: bold;">User</span><span style="color: #000000;">(</span>models.<span style="color: #005f5f; font-weight: bold;">Model</span><span style="color: #000000;">)</span>:
+    <span style="color: #005e8b;">login</span> <span style="font-weight: bold;">=</span> models.<span style="color: #005f5f; font-weight: bold;">CharField</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"login"</span>, max_length<span style="font-weight: bold;">=</span><span style="color: #0000b0;">200</span><span style="color: #000000;">)</span>
+    <span style="color: #005e8b;">password</span> <span style="font-weight: bold;">=</span> models.<span style="color: #005f5f; font-weight: bold;">CharField</span><span style="color: #000000;">(</span><span style="color: #354fcf;">"password"</span>, max_length<span style="font-weight: bold;">=</span><span style="color: #0000b0;">200</span><span style="color: #000000;">)</span>
+
+    <span style="color: #531ab6; font-weight: bold;">class</span> <span style="color: #005f5f; font-weight: bold;">Meta</span>:
+        <span style="color: #005e8b;">constraints</span> <span style="font-weight: bold;">=</span> <span style="color: #000000;">[</span>
+            models.<span style="color: #005f5f; font-weight: bold;">UniqueConstraint</span><span style="color: #dd22dd;">(</span><span style="color: #354fcf;">'login'</span>, name<span style="font-weight: bold;">=</span><span style="color: #354fcf;">'unique_login'</span><span style="color: #dd22dd;">)</span>
+        <span style="color: #000000;">]</span>
+</code></pre>
+</div>
+<p>
+et
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">from</span> django <span style="color: #531ab6; font-weight: bold;">import</span> forms
+<span style="color: #531ab6; font-weight: bold;">from</span> .models <span style="color: #531ab6; font-weight: bold;">import</span> <span style="color: #005f5f; font-weight: bold;">User</span>
+
+<span style="color: #531ab6; font-weight: bold;">class</span> <span style="color: #005f5f; font-weight: bold;">UserForm</span><span style="color: #000000;">(</span>forms.<span style="color: #005f5f; font-weight: bold;">ModelForm</span><span style="color: #000000;">)</span>:
+    <span style="color: #531ab6; font-weight: bold;">class</span> <span style="color: #005f5f; font-weight: bold;">Meta</span>:
+        <span style="color: #005e8b;">model</span> <span style="font-weight: bold;">=</span> <span style="color: #005f5f; font-weight: bold;">User</span>
+        <span style="color: #005e8b;">fields</span> <span style="font-weight: bold;">=</span> <span style="color: #000000;">[</span>
+            <span style="color: #354fcf;">'login'</span>,
+            <span style="color: #354fcf;">'password'</span>
+        <span style="color: #000000;">]</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org72b7728">
+<h4 id="org72b7728"><span class="section-number-4">2.2.2.</span> Application de connexion - Vue</h4>
+<p>
+La vue capture le niveau d'erreur lors de la tentative de connexion au service web. Elle va aussi
+permettre l'enregistrement de l'utilisateur et du mot de passe dans un fichier d'environnement.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">from</span> django.contrib <span style="color: #531ab6; font-weight: bold;">import</span> messages
+<span style="color: #531ab6; font-weight: bold;">from</span> django.http <span style="color: #531ab6; font-weight: bold;">import</span> <span style="color: #005f5f; font-weight: bold;">HttpResponseRedirect</span>
+<span style="color: #531ab6; font-weight: bold;">from</span> django.urls <span style="color: #531ab6; font-weight: bold;">import</span> reverse
+<span style="color: #531ab6; font-weight: bold;">from</span> django.views.generic <span style="color: #531ab6; font-weight: bold;">import</span> <span style="color: #005f5f; font-weight: bold;">ListView</span>
+<span style="color: #531ab6; font-weight: bold;">from</span> django.conf <span style="color: #531ab6; font-weight: bold;">import</span> settings
+
+<span style="color: #531ab6; font-weight: bold;">from</span> .forms <span style="color: #531ab6; font-weight: bold;">import</span> <span style="color: #005f5f; font-weight: bold;">UserForm</span>
+<span style="color: #531ab6; font-weight: bold;">from</span> .models <span style="color: #531ab6; font-weight: bold;">import</span> <span style="color: #005f5f; font-weight: bold;">User</span>
+
+<span style="color: #531ab6; font-weight: bold;">import</span> xml_rpc <span style="color: #531ab6; font-weight: bold;">as</span> xml_rpc
+
+<span style="color: #531ab6; font-weight: bold;">class</span> <span style="color: #005f5f; font-weight: bold;">IndexView</span><span style="color: #000000;">(</span><span style="color: #005f5f; font-weight: bold;">ListView</span><span style="color: #000000;">)</span>:
+    <span style="color: #005e8b;">model</span> <span style="font-weight: bold;">=</span> <span style="color: #005f5f; font-weight: bold;">User</span>
+    <span style="color: #005e8b;">template_name</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">"odoo_connect/index.html"</span>
+    <span style="color: #005e8b;">context_object_name</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">"connection"</span>
+
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">get_context_data</span><span style="color: #000000;">(</span><span style="color: #531ab6; font-weight: bold;">self</span>, <span style="font-weight: bold;">*</span>, <span style="color: #005e8b;">object_list</span><span style="font-weight: bold;">=</span><span style="color: #0000b0;">None</span>, <span style="font-weight: bold;">**</span><span style="color: #005e8b;">kwargs</span><span style="color: #000000;">)</span>:
+        <span style="color: #005e8b;">context</span> <span style="font-weight: bold;">=</span> <span style="color: #8f0075; font-weight: bold;">super</span><span style="color: #000000;">()</span>.get_context_data<span style="color: #000000;">(</span><span style="font-weight: bold;">**</span>kwargs<span style="color: #000000;">)</span>
+        context<span style="color: #000000;">[</span><span style="color: #005e8b;">'userForm'</span><span style="color: #000000;">]</span> <span style="font-weight: bold;">=</span> <span style="color: #005f5f; font-weight: bold;">UserForm</span>
+        <span style="color: #531ab6; font-weight: bold;">return</span> context
+
+<span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">_write_info</span><span style="color: #000000;">(</span><span style="color: #005e8b;">login</span>, <span style="color: #005e8b;">username</span><span style="color: #000000;">)</span>:
+    <span style="color: #531ab6; font-weight: bold;">with</span> <span style="color: #8f0075; font-weight: bold;">open</span><span style="color: #000000;">(</span>settings.<span style="color: #0000b0; font-weight: bold;">BASE_DIR</span> <span style="font-weight: bold;">/</span> <span style="color: #354fcf;">'.env'</span>, <span style="color: #354fcf;">'w'</span><span style="color: #000000;">)</span> <span style="color: #531ab6; font-weight: bold;">as</span> f:
+        f.write<span style="color: #000000;">(</span><span style="color: #354fcf;">f"</span><span style="color: #00663f; font-weight: bold;">{</span><span style="color: #000000; background-color: #ffffff;">login</span><span style="color: #00663f; font-weight: bold;">}</span><span style="color: #354fcf;">,</span><span style="color: #00663f; font-weight: bold;">{</span><span style="color: #000000; background-color: #ffffff;">username</span><span style="color: #00663f; font-weight: bold;">}</span><span style="color: #354fcf;">"</span><span style="color: #000000;">)</span>
+
+<span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">connect</span><span style="color: #000000;">(</span><span style="color: #005e8b;">request</span><span style="color: #000000;">)</span>:
+    <span style="color: #005e8b;">form</span> <span style="font-weight: bold;">=</span> <span style="color: #005f5f; font-weight: bold;">UserForm</span><span style="color: #000000;">(</span>request.<span style="color: #0000b0; font-weight: bold;">POST</span><span style="color: #000000;">)</span>
+    <span style="color: #595959; font-style: italic;"># A Model Form won't be valid if a field is already in the DB (very annoying)</span>
+    <span style="color: #595959; font-style: italic;"># We need to try with the else clause to see if the connection to Odoo works</span>
+    <span style="color: #595959; font-style: italic;"># Lots of copying code here</span>
+    <span style="color: #531ab6; font-weight: bold;">if</span> form.is_valid<span style="color: #000000;">()</span>:
+        <span style="color: #005e8b;">login</span>, <span style="color: #005e8b;">password</span> <span style="font-weight: bold;">=</span> form.cleaned_data<span style="color: #000000;">[</span><span style="color: #354fcf;">'login'</span><span style="color: #000000;">]</span>, form.cleaned_data<span style="color: #000000;">[</span><span style="color: #354fcf;">'password'</span><span style="color: #000000;">]</span>
+        <span style="color: #531ab6; font-weight: bold;">try</span>:
+            <span style="color: #005e8b;">uid</span> <span style="font-weight: bold;">=</span> xml_rpc.connect<span style="color: #000000;">(</span>login, password<span style="color: #000000;">)</span>
+            <span style="color: #531ab6; font-weight: bold;">if</span> uid:
+                <span style="color: #005f5f; font-weight: bold;">User</span>.objects.create<span style="color: #000000;">(</span>
+                    login<span style="font-weight: bold;">=</span>login,
+                    password<span style="font-weight: bold;">=</span>password,
+                <span style="color: #000000;">)</span>
+                <span style="color: #721045;">_write_info</span><span style="color: #000000;">(</span>login, password<span style="color: #000000;">)</span>
+                messages.success<span style="color: #000000;">(</span>request, <span style="color: #354fcf;">"Identification succeeded!"</span><span style="color: #000000;">)</span>
+            <span style="color: #531ab6; font-weight: bold;">else</span>:
+                messages.error<span style="color: #000000;">(</span>request, <span style="color: #354fcf;">"Identification failed."</span><span style="color: #000000;">)</span>
+        <span style="color: #531ab6; font-weight: bold;">except</span> <span style="color: #005f5f; font-weight: bold;">ConnectionError</span>:
+            messages.error<span style="color: #000000;">(</span>request, <span style="color: #354fcf;">"The 0doo server is not started!"</span><span style="color: #000000;">)</span>
+    <span style="color: #531ab6; font-weight: bold;">else</span>:
+        <span style="color: #005e8b;">login</span>, <span style="color: #005e8b;">password</span> <span style="font-weight: bold;">=</span> form.data<span style="color: #000000;">[</span><span style="color: #354fcf;">'login'</span><span style="color: #000000;">]</span>, form.data<span style="color: #000000;">[</span><span style="color: #354fcf;">'password'</span><span style="color: #000000;">]</span>  <span style="color: #595959; font-style: italic;"># data and not cleaned_data</span>
+        <span style="color: #531ab6; font-weight: bold;">try</span>:
+            <span style="color: #005e8b;">uid</span> <span style="font-weight: bold;">=</span> xml_rpc.connect<span style="color: #000000;">(</span>login, password<span style="color: #000000;">)</span>
+            <span style="color: #531ab6; font-weight: bold;">if</span> uid:
+                <span style="color: #005e8b;">user</span> <span style="font-weight: bold;">=</span> <span style="color: #005f5f; font-weight: bold;">User</span>.objects.get<span style="color: #000000;">(</span>
+                    login<span style="font-weight: bold;">=</span>login,
+                    password<span style="font-weight: bold;">=</span>password,
+                <span style="color: #000000;">)</span>
+                <span style="color: #531ab6; font-weight: bold;">if</span> user:
+                    messages.success<span style="color: #000000;">(</span>request, <span style="color: #354fcf;">"Identification succeeded!"</span><span style="color: #000000;">)</span>
+                    <span style="color: #721045;">_write_info</span><span style="color: #000000;">(</span>login, password<span style="color: #000000;">)</span>
+            <span style="color: #531ab6; font-weight: bold;">else</span>:
+                messages.error<span style="color: #000000;">(</span>request, <span style="color: #354fcf;">"Identification failed."</span><span style="color: #000000;">)</span>
+        <span style="color: #531ab6; font-weight: bold;">except</span> <span style="color: #005f5f; font-weight: bold;">ConnectionError</span>:
+            messages.error<span style="color: #000000;">(</span>request, <span style="color: #354fcf;">"The 0doo server is not started!"</span><span style="color: #000000;">)</span>
+    <span style="color: #595959; font-style: italic;"># redirection vers le site apr&#232;s la requ&#234;te POST</span>
+    <span style="color: #595959; font-style: italic;"># redirection apr&#232;s la gestion correcte pour emp&#234;cher de poster deux fois</span>
+    <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #005f5f; font-weight: bold;">HttpResponseRedirect</span><span style="color: #000000;">(</span><span style="color: #721045;">reverse</span><span style="color: #dd22dd;">(</span><span style="color: #354fcf;">'odoo_connect:index'</span><span style="color: #dd22dd;">)</span><span style="color: #000000;">)</span>
+</code></pre>
+</div>
+</section>
+<section id="slide-org961c713">
+<h4 id="org961c713"><span class="section-number-4">2.2.3.</span> Application d'achat d'appartement</h4>
+<p>
+La logique business est concentrée dans l'application de connexion au service XML-RPC, je me
+contente de récupérer les données et les afficher ainsi que gérer les demandes d'achat.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"   ><code trim><span style="color: #531ab6; font-weight: bold;">import</span> xmlrpc.client
+
+<span style="color: #531ab6; font-weight: bold;">from</span> django.contrib <span style="color: #531ab6; font-weight: bold;">import</span> messages
+<span style="color: #531ab6; font-weight: bold;">from</span> django.http <span style="color: #531ab6; font-weight: bold;">import</span> <span style="color: #005f5f; font-weight: bold;">HttpResponseRedirect</span>
+<span style="color: #531ab6; font-weight: bold;">from</span> django.shortcuts <span style="color: #531ab6; font-weight: bold;">import</span> render
+<span style="color: #531ab6; font-weight: bold;">from</span> django.conf <span style="color: #531ab6; font-weight: bold;">import</span> settings
+<span style="color: #531ab6; font-weight: bold;">from</span> .forms <span style="color: #531ab6; font-weight: bold;">import</span> <span style="color: #005f5f; font-weight: bold;">OfferForm</span>
+<span style="color: #531ab6; font-weight: bold;">import</span> xml_rpc
+
+<span style="color: #531ab6; font-weight: bold;">class</span> <span style="color: #005f5f; font-weight: bold;">ApartView</span>:
+    <span style="color: #005e8b;">uid</span> <span style="font-weight: bold;">=</span> <span style="color: #0000b0;">False</span>
+    <span style="color: #005e8b;">context</span> <span style="font-weight: bold;">=</span> <span style="color: #000000;">{}</span>
+    <span style="color: #005e8b;">password</span> <span style="font-weight: bold;">=</span> <span style="color: #354fcf;">''</span>
+
+    <span style="color: #a0132f; font-weight: bold;">@</span><span style="color: #a0132f;">staticmethod</span>
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">index</span><span style="color: #000000;">(</span><span style="color: #005e8b;">request</span><span style="color: #000000;">)</span>:
+        <span style="color: #531ab6; font-weight: bold;">try</span>:
+            <span style="color: #531ab6; font-weight: bold;">with</span> <span style="color: #8f0075; font-weight: bold;">open</span><span style="color: #000000;">(</span>settings.<span style="color: #0000b0; font-weight: bold;">BASE_DIR</span> <span style="font-weight: bold;">/</span> <span style="color: #354fcf;">'.env'</span><span style="color: #000000;">)</span> <span style="color: #531ab6; font-weight: bold;">as</span> f:
+                <span style="color: #005e8b;">login</span>, <span style="color: #005e8b;">password</span> <span style="font-weight: bold;">=</span> f.readline<span style="color: #000000;">()</span>.split<span style="color: #000000;">(</span><span style="color: #354fcf;">','</span><span style="color: #000000;">)</span>
+                <span style="color: #005f5f; font-weight: bold;">ApartView</span>.<span style="color: #005e8b;">password</span> <span style="font-weight: bold;">=</span> password
+            <span style="color: #005f5f; font-weight: bold;">ApartView</span>.<span style="color: #005e8b;">uid</span> <span style="font-weight: bold;">=</span> xml_rpc.connect<span style="color: #000000;">(</span>login, password<span style="color: #000000;">)</span>
+            <span style="color: #531ab6; font-weight: bold;">if</span> <span style="font-weight: bold;">not</span> <span style="color: #005f5f; font-weight: bold;">ApartView</span>.uid:
+                <span style="color: #005f5f; font-weight: bold;">ApartView</span>.<span style="color: #005e8b;">context</span> <span style="font-weight: bold;">=</span> <span style="color: #000000;">{}</span>
+                messages.error<span style="color: #000000;">(</span>request, <span style="color: #354fcf;">"No valid credentials, please connect with valid ones!"</span><span style="color: #000000;">)</span>
+
+            <span style="color: #005f5f; font-weight: bold;">ApartView</span>.<span style="color: #005e8b;">context</span> <span style="font-weight: bold;">=</span> <span style="color: #000000;">{</span><span style="color: #354fcf;">'apartments'</span>: xml_rpc.get_apartments<span style="color: #dd22dd;">(</span><span style="color: #005f5f; font-weight: bold;">ApartView</span>.uid, password<span style="color: #dd22dd;">)</span><span style="color: #000000;">}</span>
+        <span style="color: #531ab6; font-weight: bold;">except</span> <span style="color: #005f5f; font-weight: bold;">FileNotFoundError</span>:
+            <span style="color: #005f5f; font-weight: bold;">ApartView</span>.<span style="color: #005e8b;">context</span> <span style="font-weight: bold;">=</span> <span style="color: #000000;">{}</span>
+            messages.error<span style="color: #000000;">(</span>request, <span style="color: #354fcf;">"Please connect first!"</span><span style="color: #000000;">)</span>
+        <span style="color: #531ab6; font-weight: bold;">except</span> <span style="color: #005f5f; font-weight: bold;">ConnectionError</span>:
+            <span style="color: #005f5f; font-weight: bold;">ApartView</span>.<span style="color: #005e8b;">context</span> <span style="font-weight: bold;">=</span> <span style="color: #000000;">{}</span>
+            messages.error<span style="color: #000000;">(</span>request, <span style="color: #354fcf;">"Please make sure the Odoo server is running!"</span><span style="color: #000000;">)</span>
+
+        <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #721045;">render</span><span style="color: #000000;">(</span>request, <span style="color: #354fcf;">'odoo_realtor/index.html'</span>, <span style="color: #005f5f; font-weight: bold;">ApartView</span>.context<span style="color: #000000;">)</span>
+
+    <span style="color: #a0132f; font-weight: bold;">@</span><span style="color: #a0132f;">staticmethod</span>
+    <span style="color: #531ab6; font-weight: bold;">def</span> <span style="color: #721045;">create_offer</span><span style="color: #000000;">(</span><span style="color: #005e8b;">request</span><span style="color: #000000;">)</span>:
+        <span style="color: #595959; font-style: italic;"># See https://docs.djangoproject.com/en/4.1/topics/forms/#the-view</span>
+        <span style="color: #531ab6; font-weight: bold;">if</span> request.method <span style="font-weight: bold;">==</span> <span style="color: #354fcf;">"POST"</span>:
+            <span style="color: #005e8b;">form</span> <span style="font-weight: bold;">=</span> <span style="color: #005f5f; font-weight: bold;">OfferForm</span><span style="color: #000000;">(</span>request.<span style="color: #0000b0; font-weight: bold;">POST</span><span style="color: #000000;">)</span>
+            <span style="color: #531ab6; font-weight: bold;">if</span> form.is_valid<span style="color: #000000;">()</span>:
+                <span style="color: #005e8b;">partner_name</span> <span style="font-weight: bold;">=</span> form.cleaned_data<span style="color: #000000;">[</span><span style="color: #354fcf;">'partner_name'</span><span style="color: #000000;">]</span>
+                <span style="color: #005e8b;">offer_amt</span> <span style="font-weight: bold;">=</span> form.cleaned_data<span style="color: #000000;">[</span><span style="color: #354fcf;">'offer_amt'</span><span style="color: #000000;">]</span>
+                <span style="color: #005e8b;">apart_id</span> <span style="font-weight: bold;">=</span> form.cleaned_data<span style="color: #000000;">[</span><span style="color: #354fcf;">'apart_id'</span><span style="color: #000000;">]</span>
+                <span style="color: #531ab6; font-weight: bold;">try</span>:
+                    xml_rpc.create_offer<span style="color: #000000;">(</span><span style="color: #005f5f; font-weight: bold;">ApartView</span>.uid, <span style="color: #005f5f; font-weight: bold;">ApartView</span>.password, partner_name, offer_amt, apart_id<span style="color: #000000;">)</span>
+                <span style="color: #531ab6; font-weight: bold;">except</span> xmlrpc.client.<span style="color: #005f5f; font-weight: bold;">Fault</span>:
+                    messages.error<span style="color: #000000;">(</span>request, <span style="color: #354fcf;">"You must input an offer larger than the existing one."</span><span style="color: #000000;">)</span>
+                <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #005f5f; font-weight: bold;">HttpResponseRedirect</span><span style="color: #000000;">(</span><span style="color: #354fcf;">'/apartments'</span><span style="color: #000000;">)</span>
+        <span style="color: #531ab6; font-weight: bold;">else</span>:
+            <span style="color: #531ab6; font-weight: bold;">return</span> <span style="color: #721045;">render</span><span style="color: #000000;">(</span>request, <span style="color: #354fcf;">'odoo_realtor/index.html'</span>, <span style="color: #005f5f; font-weight: bold;">ApartView</span>.context<span style="color: #000000;">)</span>
+</code></pre>
+</div>
 </section>
 </section>
 <section>
-<section id="slide-orgbbcf2d1">
-<h2 id="orgbbcf2d1"><span class="section-number-2">3.</span> Le <i>Business Object</i> Appartement</h2>
+<section id="slide-orgf0fd0ea">
+<h2 id="orgf0fd0ea"><span class="section-number-2">3.</span> Connexion au service web</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+</section>
+<section id="slide-orgaa0e1fa">
+<h3 id="orgaa0e1fa"><span class="section-number-3">3.1.</span> Connexion via XML-RPC</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+</section>
+<section id="slide-org01f467d">
+<h4 id="org01f467d"><span class="section-number-4">3.1.1.</span> Stratégie</h4>
+</section>
+<section id="slide-org6e7f16d">
+<h4 id="org6e7f16d"><span class="section-number-4">3.1.2.</span> Code</h4>
 </section>
 </section>
 <section>
-<section id="slide-org346c82b">
-<h2 id="org346c82b"><span class="section-number-2">4.</span> Vues Odoo</h2>
+<section id="slide-org2f37026">
+<h2 id="org2f37026"><span class="section-number-2">4.</span> Conclusion</h2>
 </section>
 </section>
 <section>
-<section id="slide-orgcda5db6">
-<h2 id="orgcda5db6"><span class="section-number-2">5.</span> Chargement des données</h2>
-</section>
-</section>
-<section>
-<section id="slide-org6b313f7">
-<h2 id="org6b313f7"><span class="section-number-2">6.</span> Connexion au service web</h2>
-</section>
-</section>
-<section>
-<section id="slide-orga958a3b">
-<h2 id="orga958a3b"><span class="section-number-2">7.</span> Gestion des stocks</h2>
-</section>
-</section>
-<section>
-<section id="slide-org50ab785">
-<h2 id="org50ab785"><span class="section-number-2">8.</span> Interface Django</h2>
-</section>
-</section>
-<section>
-<section id="slide-org2a41237">
-<h2 id="org2a41237"><span class="section-number-2">9.</span> Conclusion</h2>
-</section>
-</section>
-<section>
-<section id="slide-org26b0986" data-background="#bde0fe">
-<h2 id="org26b0986"><span class="section-number-2">10.</span> Questions ?</h2>
+<section id="slide-org75d8eb0" data-background="#bde0fe">
+<h2 id="org75d8eb0"><span class="section-number-2">5.</span> Questions ?</h2>
 </section>
 </section>
 </div>

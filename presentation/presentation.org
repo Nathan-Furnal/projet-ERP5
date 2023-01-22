@@ -6,6 +6,7 @@
 #+REVEAL_EXTRA_CSS: ./custom.css
 #+language: fr
 #+options: date:nil timestamp:nil toc:2
+#+startup: hideblocks
 
 * Présentation
 ** Présentation du projet
@@ -26,7 +27,8 @@ La partie Odoo est sous =odoo-app=.
 * Architecture du projet
 ** Odoo
 *** /Business Object/ Appartement
-#+begin_src python
+Appartement mis en vente sur la plate-forme.
+#+begin_src python :eval no
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
@@ -140,7 +142,8 @@ class RealtorApartment(models.Model):
         return self.write({"state": "canceled"})             
 #+end_src
 *** /Business Object/ Offre
-#+begin_src python
+Objet de gestion des offres sur la plate-forme.
+#+begin_src python :eval no
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
@@ -218,8 +221,8 @@ class RealtorOffer(models.Model):
         )        
 #+end_src
 *** /Business Object/ Produit
-
-#+begin_src python
+Objet de liaison entre l'appartement et le système de stocks d'Odoo.
+#+begin_src python :eval no
 from odoo import models, fields, api
 
 class RealtorProduct(models.Model):
@@ -234,15 +237,530 @@ class RealtorProduct(models.Model):
         for el in self:
             el.list_price = el.apart_id.expected_price
 #+end_src
+*** /Business Object/ Utilisateur
+Extension de la classe utilisateur pour tenir compte des appartements liés à un utilisateur.
+#+begin_src python :eval no
+# -*- coding: utf-8 -*-
 
+from odoo import fields, models
+
+
+class ResUsers(models.Model):
+    # ---------------------------------------- Private Attributes ---------------------------------
+
+    _inherit = "res.users"
+
+    # --------------------------------------- Fields Declaration ----------------------------------
+    
+    # Relational
+    property_ids = fields.One2many(
+        "realtor.apartment", "user_id", string="Properties")
+#+end_src
+*** Vues Odoo
+Les vues sont générées via du XML, on peut créer des sous-pages et des actions qui appelleront les
+méthodes du modèle quand on remplit les champs nécessaires.
+#+begin_src xml :eval no
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="realtor_apartment_view_form" model="ir.ui.view">
+        <field name="name">realtor.apartment.form</field>
+        <field name="model">realtor.apartment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_sold" type="object" string="Sold" states="new,offer_received"/>
+                    <button name="action_sold" type="object" string="Sold" states="offer_accepted" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Cancel" states="new,offer_received,offer_accepted"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="availability_date"/>
+                        </group>
+                        <group>
+                            <field name="expected_price"/>
+                            <field name="best_price"/>
+                            <field name="selling_price"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <group>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="desc"/>                    
+                                    <field name="img" widget="image" options="{'size': [150, 150]}"/>
+                                    <field name="apartment_area"/>
+                                    <field name="terrace_area"/>                            
+                                    <field name="total_area"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Offers">
+                            <field name="offer_ids" attrs="{'readonly': [('state', 'in', ('offer_accepted', 'sold', 'canceled'))]}"/>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <group>
+                                    <field name="user_id"/>
+                                    <field name="buyer_id"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="realtor_apartment_view_tree" model="ir.ui.view">
+        <field name="name">realtor.apartment.tree</field>
+        <field name="model">realtor.apartment</field>
+        <field name="arch" type="xml">
+        <tree string="Properties" decoration-success="state in ('offer_received', 'offer_accepted')" decoration-muted="state == 'sold'" decoration-bf="state == 'offer_accepted'">
+                <field name="name"/>
+                <field name="apartment_area"/>
+                <field name="terrace_area"/>                
+                <field name="expected_price"/>    
+                <field name="selling_price"/>                                                    
+                <field name="availability_date" optional="hide"/>
+                <field name="state" invisible="1"/>                
+            </tree>
+        </field>
+    </record>
+
+    <record id="realtor_apartment_view_search" model="ir.ui.view">
+        <field name="name">realtor.apartment.search</field>
+        <field name="model">realtor.apartment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="expected_price"/>
+                <field name="apartment_area"/>
+                <field name="terrace_area"/>
+                <filter string="Available" name="available" domain="[('state', 'in', ('new', 'offer_received'))]"/>                                
+            </search>
+        </field>
+    </record>
+
+    <record id="realtor_apartment_action" model="ir.actions.act_window">
+        <field name="name">Apartments</field>
+        <field name="res_model">realtor.apartment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_available': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a property advertisement
+            </p>
+            <p>
+                Create real estate properties and follow the selling process.
+            </p>
+        </field>
+    </record>
+
+    <record id="realtor_inherit_product_template" model="ir.ui.view">
+        <field name="name">Apartment Product</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"></field>
+        <field name="arch" type="xml">
+            <field name="product_variant_id" position="after"><!-- name is mandatory -->
+                <field name="apart_id">Apartment</field>
+            </field>
+        </field>
+    </record>
+</odoo>
+#+end_src
+*** Données fictives utilisateur
+Les données sont elles aussi générées par le XML via les fichiers de démonstration, on peut créer
+des nouveaux utilisateurs, des appartements, des lignes de stocks, etc.
+#+begin_src xml :eval no
+<odoo>
+  <data>
+
+      <!-- Initial partners, potential buyers -->
+      <record model="res.partner" id="realtor_partner_01">
+        <field name="name">Harry Potter</field>
+    </record>
+    <record model="res.partner" id="realtor_partner_02">
+        <field name="name">Clark Kent</field>
+    </record>
+    <record model="res.partner" id="realtor_partner_03">
+        <field name="name">Bruce Wayne</field>
+    </record>
+    <record model="res.partner" id="realtor_partner_04">
+      <field name="name">Franz Kafka</field>
+    </record>
+
+  <!-- First apartment -->
+  <record model="realtor.apartment" id="realtor_apart_01">
+    <field name="name">Beautiful Apartment</field>
+    <field name="desc">A beautiful apartment in Brussels</field>
+    <field name="img" type="base64" file="realtor/static/img/apart_img01.jpg"></field>
+    <field name="expected_price">350000</field>
+    <field name="apartment_area">100</field>
+    <field name="terrace_area">20</field>
+    <field name="state">new</field>
+    <field name="user_id" search="[('login','=','eugene.krabs@he2b.be')]"></field>
+  </record>
+
+  <!-- Second apartment -->
+  <record model="realtor.apartment" id="realtor_apart_02">
+    <field name="name">Nice Apartment</field>
+    <field name="desc">A nice apartment in the city center</field>
+    <field name="img" type="base64" file="realtor/static/img/apart_img02.jpg"></field>
+    <field name="expected_price">450000</field>
+    <field name="apartment_area">132</field>
+    <field name="terrace_area">25</field>
+    <field name="state">new</field>
+    <field name="user_id" search="[('login','=','eugene.krabs@he2b.be')]"></field>
+  </record>
+
+  <!-- Third apartment -->
+  <record model="realtor.apartment" id="realtor_apart_03">
+    <field name="name">Amazing Apartment</field>
+    <field name="desc">An amazing apartment near a park</field>
+    <field name="img" type="base64" file="realtor/static/img/apart_img03.jpg"></field>
+    <field name="expected_price">325000</field>
+    <field name="apartment_area">90</field>
+    <field name="terrace_area">11</field>
+    <field name="state">new</field>
+    <field name="user_id" search="[('login','=','sandy.cheeks@he2b.be')]"></field>
+  </record>
+  
+  <!-- Fourth apartment -->
+  <record model="realtor.apartment" id="realtor_apart_04">
+    <field name="name">Rundown Apartment</field>
+    <field name="desc">A rundown apartment, looks like a shack</field>
+    <field name="img" type="base64" file="realtor/static/img/apart_img04.jpg"></field>
+    <field name="expected_price">175000</field>
+    <field name="apartment_area">30</field>
+    <field name="terrace_area">2</field>
+    <field name="state">new</field>
+    <field name="user_id" search="[('login','=','patrick.star@he2b.be')]"></field>
+  </record>  
+  
+  <!-- Fifth apartment -->
+  <record model="realtor.apartment" id="realtor_apart_05">
+    <field name="name">Okay Apartment</field>
+    <field name="desc">An okay apartment, nothing special to see here folks!</field>
+    <field name="img" type="base64" file="realtor/static/img/apart_img05.jpg"></field>
+    <field name="expected_price">250000</field>
+    <field name="apartment_area">70</field>
+    <field name="terrace_area">15</field>
+    <field name="state">new</field>
+    <field name="user_id" search="[('login','=','sheldon.plankton@he2b.be')]"></field>
+  </record>            
+  
+  </data>
+</odoo>
+#+end_src
+*** Données fictives de stocks
+#+begin_src xml :eval no
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <!-- Resource: stock.inventory -->
+
+        <record id="stock_inventory_0" model="stock.inventory">
+            <field name="name">Apartment Inventory</field>
+        </record>
+
+        <!-- Templating -->
+        <record id="realtor_template_1" model="product.template">
+            <field name="name">ApartLot1</field>
+            <field name="apart_id" ref="realtor_apart_01"></field>
+            <field name="type">product</field>
+        </record>
+
+        <record id="realtor_template_2" model="product.template">
+            <field name="name">ApartLot2</field>
+            <field name="apart_id" ref="realtor_apart_02"></field>
+            <field name="type">product</field>
+        </record>
+        <record id="realtor_template_3" model="product.template">
+            <field name="name">ApartLot3</field>
+            <field name="apart_id" ref="realtor_apart_03"></field>
+            <field name="type">product</field>
+        </record>
+        <record id="realtor_template_4" model="product.template">
+            <field name="name">ApartLot4</field>
+            <field name="apart_id" ref="realtor_apart_04"></field>
+            <field name="type">product</field>
+        </record>
+        <record id="realtor_template_5" model="product.template">
+            <field name="name">ApartLot5</field>
+            <field name="apart_id" ref="realtor_apart_05"></field>
+            <field name="type">product</field>
+        </record>
+        <!-- Add apart in inventory -->
+        <record id="stock_inventory_apart1" model="stock.inventory.line">
+            <field name="product_id" ref="realtor_template_1"/>
+            <field name="inventory_id" ref="stock_inventory_0"/>
+            <field name="product_qty">7.0</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="stock_inventory_apart2" model="stock.inventory.line">
+            <field name="product_id" ref="realtor_template_2"/>
+            <field name="inventory_id" ref="stock_inventory_0"/>
+            <field name="product_qty">8.0</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="stock_inventory_apart3" model="stock.inventory.line">
+            <field name="product_id" ref="realtor_template_3"/>
+            <field name="inventory_id" ref="stock_inventory_0"/>
+            <field name="product_qty">11.0</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="stock_inventory_apart4" model="stock.inventory.line">
+            <field name="product_id" ref="realtor_template_4"/>
+            <field name="inventory_id" ref="stock_inventory_0"/>
+            <field name="product_qty">10.0</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="stock_inventory_apart5" model="stock.inventory.line">
+            <field name="product_id" ref="realtor_template_5"/>
+            <field name="inventory_id" ref="stock_inventory_0"/>
+            <field name="product_qty">3.0</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>        
+
+
+        <function model="stock.inventory" name="_action_start">
+            <function eval="[[('state','=','draft'),('id', '=', ref('stock_inventory_0'))]]" model="stock.inventory" name="search"/>
+        </function>
+        <function model="stock.inventory" name="action_validate">
+            <function eval="[[('state','=','confirm'),('id', '=', ref('stock_inventory_0'))]]" model="stock.inventory" name="search"/>
+        </function>
+
+    </data>
+</odoo>
+#+end_src
 ** Django
-* Le /Business Object/ Appartement
-* Vues Odoo
-* Chargement des données
+*** Application de connexion - Modèle
+Il y a peu à dire sur ce modèle, on crée un objet utilisateur simple et un formulaire pour le
+compléter.
+#+begin_src python :eval no
+from django.db import models
+
+class User(models.Model):
+    login = models.CharField("login", max_length=200)
+    password = models.CharField("password", max_length=200)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint('login', name='unique_login')
+        ]
+#+end_src
+et
+#+begin_src python :eval no
+from django import forms
+from .models import User
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'login',
+            'password'
+        ]
+#+end_src
+*** Application de connexion - Vue
+La vue capture le niveau d'erreur lors de la tentative de connexion au service web. Elle va aussi
+permettre l'enregistrement de l'utilisateur et du mot de passe dans un fichier d'environnement.
+#+begin_src python :eval no
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic import ListView
+from django.conf import settings
+
+from .forms import UserForm
+from .models import User
+
+import xml_rpc as xml_rpc
+
+class IndexView(ListView):
+    model = User
+    template_name = "odoo_connect/index.html"
+    context_object_name = "connection"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['userForm'] = UserForm
+        return context
+
+def _write_info(login, username):
+    with open(settings.BASE_DIR / '.env', 'w') as f:
+        f.write(f"{login},{username}")
+
+def connect(request):
+    form = UserForm(request.POST)
+    # A Model Form won't be valid if a field is already in the DB (very annoying)
+    # We need to try with the else clause to see if the connection to Odoo works
+    # Lots of copying code here
+    if form.is_valid():
+        login, password = form.cleaned_data['login'], form.cleaned_data['password']
+        try:
+            uid = xml_rpc.connect(login, password)
+            if uid:
+                User.objects.create(
+                    login=login,
+                    password=password,
+                )
+                _write_info(login, password)
+                messages.success(request, "Identification succeeded!")
+            else:
+                messages.error(request, "Identification failed.")
+        except ConnectionError:
+            messages.error(request, "The 0doo server is not started!")
+    else:
+        login, password = form.data['login'], form.data['password']  # data and not cleaned_data
+        try:
+            uid = xml_rpc.connect(login, password)
+            if uid:
+                user = User.objects.get(
+                    login=login,
+                    password=password,
+                )
+                if user:
+                    messages.success(request, "Identification succeeded!")
+                    _write_info(login, password)
+            else:
+                messages.error(request, "Identification failed.")
+        except ConnectionError:
+            messages.error(request, "The 0doo server is not started!")
+    # redirection vers le site après la requête POST
+    # redirection après la gestion correcte pour empêcher de poster deux fois
+    return HttpResponseRedirect(reverse('odoo_connect:index'))
+#+end_src
+*** Application d'achat d'appartement
+La logique business est concentrée dans l'application de connexion au service XML-RPC, je me
+contente de récupérer les données et les afficher ainsi que gérer les demandes d'achat.
+#+begin_src python :eval no
+import xmlrpc.client
+
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.conf import settings
+from .forms import OfferForm
+import xml_rpc
+
+class ApartView:
+    uid = False
+    context = {}
+    password = ''
+
+    @staticmethod
+    def index(request):
+        try:
+            with open(settings.BASE_DIR / '.env') as f:
+                login, password = f.readline().split(',')
+                ApartView.password = password
+            ApartView.uid = xml_rpc.connect(login, password)
+            if not ApartView.uid:
+                ApartView.context = {}
+                messages.error(request, "No valid credentials, please connect with valid ones!")
+
+            ApartView.context = {'apartments': xml_rpc.get_apartments(ApartView.uid, password)}
+        except FileNotFoundError:
+            ApartView.context = {}
+            messages.error(request, "Please connect first!")
+        except ConnectionError:
+            ApartView.context = {}
+            messages.error(request, "Please make sure the Odoo server is running!")
+
+        return render(request, 'odoo_realtor/index.html', ApartView.context)
+
+    @staticmethod
+    def create_offer(request):
+        # See https://docs.djangoproject.com/en/4.1/topics/forms/#the-view
+        if request.method == "POST":
+            form = OfferForm(request.POST)
+            if form.is_valid():
+                partner_name = form.cleaned_data['partner_name']
+                offer_amt = form.cleaned_data['offer_amt']
+                apart_id = form.cleaned_data['apart_id']
+                try:
+                    xml_rpc.create_offer(ApartView.uid, ApartView.password, partner_name, offer_amt, apart_id)
+                except xmlrpc.client.Fault:
+                    messages.error(request, "You must input an offer larger than the existing one.")
+                return HttpResponseRedirect('/apartments')
+        else:
+            return render(request, 'odoo_realtor/index.html', ApartView.context)
+#+end_src
 * Connexion au service web
-* Gestion des stocks
-* Interface Django
+** Connexion via XML-RPC
+*** Fonctionnement
+- Nécessite que le /container/ Odoo soit lancé et expose son port.
+- Nécessite de passer l'utilisateur et son mot de passe en paramètres.      
+- Sépare chaque opération CRUD en une fonction.
+- Accède et trie correctement les données pour minimiser le travail d'affichage.  
+*** Code
+#+begin_src python :eval no
+import xmlrpc.client
+import itertools
+
+PORT = 8069
+URL = f"http://localhost:{PORT}"
+DB = "dev01"
+COMMON = xmlrpc.client.ServerProxy(f'{URL}/xmlrpc/2/common')
+MODELS = xmlrpc.client.ServerProxy(f'{URL}/xmlrpc/2/object')
+
+def connect(login, password):
+    return COMMON.authenticate(DB, login, password, {})
+
+def db_interact(uid, password, table, mode, fields=None):
+    return MODELS.execute_kw(
+        DB, uid, password, table, mode, [],
+        {'fields': fields})
+
+def get_apartments(uid, password):
+    products = db_interact(uid, password, 'product.product', 'search_read', ['apart_id', 'qty_available'])
+    apartments = db_interact(uid, password, 'realtor.apartment', 'search_read',
+                             ['name', 'img', 'availability_date', 'expected_price', 'apartment_area',
+                              'terrace_area', 'total_area', 'user_id', 'best_price'])
+    offers = db_interact(uid, password, 'realtor.offer', 'search_read', ['price', 'partner_id', 'property_id'])
+
+    # Align apartments and products and the same ids since 'apart_id' and 'property_id' refers to 'id'
+    # they have the same number of elements
+    apartments = sorted(apartments, key=lambda x: x['id']) # id is an int
+    products = sorted(products, key=lambda x: x['apart_id'][0])  # apart_id is a list like [1, 'Apartment']
+    # Offers keeps track of all the offers, but we want only the latest offer, which is the greatest in value
+    offers = sorted(offers, key=lambda x: x['property_id'][0])   # property_id is a list like [1, 'Apartment']
+    # Since the offers are sorted, group by property id and get the first element (the greatest) of each group
+    offers = [next(g) for _, g in itertools.groupby(offers, lambda x: x['property_id'][0])]
+    for apart, prod, offer in zip(apartments, products, offers):
+        apart['quantity'] = prod['qty_available']
+        apart['user_id'] = apart['user_id'][1]  # Keep the seller's name but not the ID, format is [1, "name"] otherwise
+        # offer['partner_id'] is like [1, 'name'] so grab the first element
+        # the output of execute is a list of dict, same logic and grab the only element
+        apart['partner_id'] = \
+            MODELS.execute_kw(DB, uid, password, 'res.partner', 'search_read', [[['id', '=', offer['partner_id'][0]]]],
+                              {'fields': ['id', 'name']})[0]['name']
+
+    return apartments
+
+def create_offer(uid, password, partner_name, offer_amt, apart_id):
+    partner = MODELS.execute_kw(DB, uid, password, 'res.partner', 'search_read', [
+        [['name', '=', partner_name]]], {'fields': ['id', 'name']})
+    if not partner:
+        partner_id = MODELS.execute_kw(DB, uid, password, 'res.partner', 'create', [{'name': partner_name}])
+    else:
+        partner_id = partner[0]['id']  # Same issue with the result of a search_read query
+
+    MODELS.execute_kw(DB, uid, password, 'realtor.offer', 'create', [{'price': offer_amt,
+                                                                      'partner_id': partner_id,
+                                                                      'property_id': apart_id}])
+#+end_src
 * Conclusion
+** Odoo
+** Django
+** Améliorations possibles
 * Questions ?
 :properties:
 :reveal_background: #bde0fe
